@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:unit="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <import resource="classpath:springconfig/memberconfig/*.xml"/>
+
+    <context:property-placeholder location="classpath:springconfig/main.properties"/>
+
+    <bean name="kdValidation" class="top.yzlin.koudai48.KDValidation"
+          c:account="${account}"/>
+
+    <bean id="autoSign" class="top.yzlin.koudai48.KDAutoSign"
+          c:kdValidation-ref="kdValidation"/>
+
+    <!--线程区-->
+    <unit:list id="threadList" value-type="java.lang.Thread">
+        <bean class="java.lang.Thread" c:target-ref="autoSign"/>
+        <bean class="java.lang.Thread" c:target-ref="kdRoomPool"/>
+        <bean class="java.lang.Thread" c:target-ref="raisePool"/>
+        <bean class="java.lang.Thread" c:target-ref="weiBoPool"/>
+
+        <bean class="java.lang.Thread" c:target-ref="zjyDouYin"/>
+
+        <bean class="java.lang.Thread" c:target-ref="xccDouYin"/>
+    </unit:list>
+
+    <bean id="raisePool" class="top.yzlin.monitoring.MonitoringMoreData"
+          c:data-ref="raiseMonitoringList"
+          p:frequency="${raise.Frequency}"/>
+
+    <unit:list id="raiseMonitoringList" value-type="top.yzlin.raise.AbstractMonitoring">
+        <!--<ref bean="zjyModian"/>-->
+        <ref bean="srModian"/>
+        <ref bean="srModian2"/>
+        <ref bean="teamXRaffle"/>
+
+        <ref bean="sxrModian"/>
+        <ref bean="sxrModian2"/>
+        <ref bean="sxrModian3"/>
+        <ref bean="sxrModian4"/>
+        <ref bean="sxrModian5"/>
+    </unit:list>
+
+    <bean id="kdRoomPool" class="top.yzlin.monitoring.MonitoringMoreData"
+          c:data-ref="kdRoomList"
+          p:frequency="${kdRoom.Frequency}"/>
+
+    <unit:list id="kdRoomList" value-type="top.yzlin.koudai48.KDRoomMonitoring">
+        <ref bean="zjyKD"/>
+        <ref bean="srKD"/>
+        <ref bean="sxrKD"/>
+    </unit:list>
+
+    <bean id="weiBoPool" class="top.yzlin.monitoring.MonitoringMoreData"
+          c:data-ref="weiBoList"
+          p:frequency="${weiBo.Frequency}"/>
+
+    <unit:list id="weiBoList" value-type="top.yzlin.weibo.WeiBoMonitoring">
+        <ref bean="srWeiBo"/>
+        <ref bean="xccWeiBo"/>
+        <ref bean="zjyWeiBo"/>
+        <ref bean="srWeiBo"/>
+    </unit:list>
+
+</beans>

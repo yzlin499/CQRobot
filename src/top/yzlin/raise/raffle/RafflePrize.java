@@ -19,6 +19,10 @@ public class RafflePrize implements Comparable<RafflePrize> {
 
     private String picturePath;
 
+    public RafflePrize() {
+
+    }
+
     public RafflePrize(String prize, int probability) {
         this.prize = prize;
         this.probability = probability;

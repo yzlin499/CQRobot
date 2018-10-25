@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-public class RandomRaise {
+public class RandomRaise<T extends RafflePrize> {
 
     private static final Random RAND = new Random();
     private int probabilitySum;
     private double minLimit;
-    private ArrayList<RafflePrize> rafflePrizeList = new ArrayList<>();
+    private ArrayList<T> rafflePrizeList = new ArrayList<>();
 
     public double getMinLimit() {
         return minLimit;
@@ -27,15 +27,15 @@ public class RandomRaise {
         return RAND;
     }
 
-    public ArrayList<RafflePrize> getRafflePrizeList() {
+    public ArrayList<T> getRafflePrizeList() {
         return rafflePrizeList;
     }
 
-    public void setRafflePrizeList(ArrayList<RafflePrize> rafflePrizeList) {
+    public void setRafflePrizeList(ArrayList<T> rafflePrizeList) {
         this.rafflePrizeList = rafflePrizeList;
     }
 
-    public void addRafflePrize(RafflePrize... prize) {
+    public void addRafflePrize(T... prize) {
         rafflePrizeList.addAll(Arrays.asList(prize));
         probabilitySum = rafflePrizeList.stream()
                 .mapToInt(RafflePrize::getProbability)
@@ -43,10 +43,10 @@ public class RandomRaise {
     }
 
 
-    public RafflePrize raffle() {
+    public T raffle() {
         int rand = RAND.nextInt(probabilitySum) + 1;
         int tempCount = 0;
-        for (RafflePrize tempPrize : rafflePrizeList) {
+        for (T tempPrize : rafflePrizeList) {
             //随机位置
             tempCount += tempPrize.getProbability();
             if (tempCount >= rand) {

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c" xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="cqSXR" class="top.yzlin.cqrobotsdk.Lemoc" c:port="${SXR.port}"/>
+
+    <bean id="sxrKD" class="top.yzlin.yyh.SXRKDRoom"
+          c:groupID="${SXR.groupID}"
+          c:cqRobot-ref="cqSXR">
+        <constructor-arg name="kdRoom">
+            <bean class="top.yzlin.koudai48.KDRoom"
+                  c:memberName="宋昕冉"
+                  c:kdValidation-ref="kdValidation"/>
+        </constructor-arg>
+    </bean>
+
+    <bean class="top.yzlin.cqrobotsdk.keywordfunc.KeyWord"
+          c:groupID="${SXR.groupID}"
+          c:cqRobot-ref="cqSXR">
+        <constructor-arg name="admin">
+            <list value-type="java.lang.String">
+                <value>499680328</value>
+                <value>359075322</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="sxrModian" class="top.yzlin.raise.ModianMonitoring"
+          c:proID="36062"
+          c:groupID="${SXR.groupID}"
+          c:cqRobot-ref="cqSXR"/>
+
+    <bean id="sxrModian2" class="top.yzlin.raise.ModianMonitoring"
+          c:proID="36061"
+          c:groupID="${SXR.groupID}"
+          c:cqRobot-ref="cqSXR"/>
+
+    <bean id="sxrModian3" class="top.yzlin.raise.ModianMonitoring"
+          c:proID="36060"
+          c:groupID="${SXR.groupID}"
+          c:cqRobot-ref="cqSXR"/>
+
+    <bean id="sxrModian4" class="top.yzlin.raise.ModianMonitoring"
+          c:proID="36059"
+          c:groupID="${SXR.groupID}"
+          c:cqRobot-ref="cqSXR"/>
+
+    <bean id="sxrModian5" class="top.yzlin.raise.ModianMonitoring"
+          c:proID="36058"
+          c:groupID="${SXR.groupID}"
+          c:cqRobot-ref="cqSXR"/>
+
+    <bean id="sxrWeiBo" class="top.yzlin.weibo.WeiBoMonitoring"
+          c:cqRobot-ref="cqSXR"
+          c:groupID="${SXR.groupID}"
+          c:name="宋昕冉"/>
+
+</beans>

@@ -8,11 +8,13 @@ import java.util.Objects;
 public class RereadMachine {
     private int count = 1;
     private int threshold = 4;
+    private int breakCount = -1;
     private String lastRecord = "";
-    private Lemoc cqRobot;
+    private String breakMsg;
+    private CQRobot cqRobot;
     private String gid;
 
-    public RereadMachine(Lemoc cqRobot, String gid) {
+    public RereadMachine(CQRobot cqRobot, String gid) {
         this.gid = gid;
         this.cqRobot = cqRobot;
         cqRobot.addMsgSolution((GroupMsgSolution) this::reread);
@@ -26,6 +28,8 @@ public class RereadMachine {
                 if (count == threshold) {
                     cqRobot.sendGroupMsg(gid, lastRecord);
                     count++;
+                } else if (count == breakCount) {
+                    cqRobot.sendGroupMsg(gid, breakMsg);
                 }
             } else {
                 lastRecord = newMsg;
@@ -40,5 +44,21 @@ public class RereadMachine {
 
     public void setThreshold(int threshold) {
         this.threshold = threshold;
+    }
+
+    public int getBreakCount() {
+        return breakCount;
+    }
+
+    public void setBreakCount(int breakCount) {
+        this.breakCount = breakCount;
+    }
+
+    public String getBreakMsg() {
+        return breakMsg;
+    }
+
+    public void setBreakMsg(String breakMsg) {
+        this.breakMsg = breakMsg;
     }
 }

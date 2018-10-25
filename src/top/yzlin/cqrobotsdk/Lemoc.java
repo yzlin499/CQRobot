@@ -183,11 +183,14 @@ public class Lemoc implements CQRobot{
      */
     @Override
     public void sendPersonMsg(String qqID, String msg) {
-        client.send(new JSONObject()
-                .fluentPut("act", SEND_PERSON_MSG)
-                .fluentPut("QQID", qqID)
-                .fluentPut("msg", msg)
-                .toString());
+        if (qqID != null && msg != null) {
+            client.send(new JSONObject()
+                    .fluentPut("act", SEND_PERSON_MSG)
+                    .fluentPut("QQID", qqID)
+                    .fluentPut("msg", msg)
+                    .toString());
+        }
+
     }
 
     /**
@@ -198,11 +201,14 @@ public class Lemoc implements CQRobot{
      */
     @Override
     public void sendGroupMsg(String groupID, String msg) {
-        client.send(new JSONObject()
-                .fluentPut("act", SEND_GROUP_MSG)
-                .fluentPut("groupid", groupID)
-                .fluentPut("msg", msg)
-                .toString());
+        if (groupID != null && msg != null) {
+            client.send(new JSONObject()
+                    .fluentPut("act", SEND_GROUP_MSG)
+                    .fluentPut("groupid", groupID)
+                    .fluentPut("msg", msg)
+                    .toString());
+        }
+
     }
 
     /**
@@ -213,11 +219,13 @@ public class Lemoc implements CQRobot{
      */
     @Override
     public void sendDiscussMsg(String discussID, String msg) {
-        client.send(new JSONObject()
-                .fluentPut("act", SEND_DISCUSS_MSG)
-                .fluentPut("discussid", discussID)
-                .fluentPut("msg", msg)
-                .toString());
+        if (msg != null && discussID != null) {
+            client.send(new JSONObject()
+                    .fluentPut("act", SEND_DISCUSS_MSG)
+                    .fluentPut("discussid", discussID)
+                    .fluentPut("msg", msg)
+                    .toString());
+        }
     }
 
     /**

@@ -9,6 +9,8 @@ import top.yzlin.cqrobotsdk.CQRobot;
 import top.yzlin.cqrobotsdk.cqinfo.GroupMsgInfo;
 import top.yzlin.cqrobotsdk.msginterface.reply.GroupMsgReply;
 import top.yzlin.raise.AbstractMonitoring;
+import top.yzlin.raise.RaiseData;
+import top.yzlin.raise.RaiseEvent;
 import top.yzlin.tools.Tools;
 import top.yzlin.tools.XMLTools;
 
@@ -25,7 +27,7 @@ import java.util.function.Function;
 
 /**
  */
-public class RaffleRaise {
+public class RaffleRaise implements RaiseEvent {
     private String QQGID;
     protected double minLimit = 100000000;
     private String admin;
@@ -90,7 +92,7 @@ public class RaffleRaise {
     public RaffleRaise(AbstractMonitoring am) {
         QQGID = am.getGroupID();
         CQRobot QQMT = am.getCqRobot();
-        am.setRaiseEvent(raiseData -> sendText(raiseData.getNickName(), raiseData.getRaiseMoney()));
+        am.setRaiseEvent(this);
 
         QQMT.addMsgSolution(new GroupMsgReply() {
             @Override
@@ -155,6 +157,14 @@ public class RaffleRaise {
     public void setText(String upText, String downText) {
         this.upText = (upText == null ? "" : upText);
         this.downText = (downText == null ? "" : downText);
+    }
+
+    public void setUpText(String upText) {
+        this.upText = upText;
+    }
+
+    public void setDownText(String downText) {
+        this.downText = downText;
     }
 
     /**
@@ -323,5 +333,10 @@ public class RaffleRaise {
         } else {
             return "没有关于这个人的集资记录";
         }
+    }
+
+    @Override
+    public String eventTrigger(RaiseData raiseData) {
+        return sendText(raiseData.getNickName(), raiseData.getRaiseMoney());
     }
 }

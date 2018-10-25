@@ -43,6 +43,7 @@ public class AbstractMonitoring extends Monitoring<RaiseData> {
         return cqRobot;
     }
 
+
     /**
      * 发送信息
      *
