@@ -12,19 +12,20 @@
           c:groupID="${SR.groupID}"
           c:proID="${SR.proID}"/>
 
-    <bean id="srModian2" class="top.yzlin.yyh.SRModian"
-          c:cqRobot-ref="cqSR"
-          c:groupID="${SR.groupID}"
-          c:proID="35309"/>
-
     <bean class="top.yzlin.cqrobotsdk.RereadMachine"
           c:cqRobot-ref="cqSR"
           c:gid="${SR.groupID}"/>
 
     <bean id="srWeiBo" class="top.yzlin.weibo.WeiBoMonitoring"
           c:cqRobot-ref="cqSR"
-          c:name="孙芮"
-          c:groupID="${SR.groupID}"/>
+          c:groupID="${SR.groupID}">
+        <constructor-arg name="weiBo">
+            <bean class="top.yzlin.weibo.WeiBo"
+                  c:name="孙芮"
+                  c:uid="3669091483"
+                  c:verifier="7a3b937f"/>
+        </constructor-arg>
+    </bean>
 
     <bean id="srKD" class="top.yzlin.koudai48.KDRoomMonitoring"
           c:groupID="${SR.groupID}"
@@ -45,9 +46,30 @@
             <list value-type="java.lang.String">
                 <value>499680328</value>
                 <value>1187781378</value>
+                <value>472910740</value>
             </list>
         </constructor-arg>
     </bean>
 
+    <bean class="top.yzlin.yyh.SRPK"
+          c:groupID="${SR.groupID}"
+          c:cqRobot-ref="cqSR">
+        <constructor-arg name="proList">
+            <list value-type="java.util.List">
+                <list value-type="java.lang.Integer">
+                    <value>40917</value>
+                    <value>40919</value>
+                </list>
+                <list value-type="java.lang.Integer">
+                    <value>40930</value>
+                    <value>40915</value>
+                </list>
+                <list value-type="java.lang.Integer">
+                    <value>40920</value>
+                    <value>40883</value>
+                </list>
+            </list>
+        </constructor-arg>
+    </bean>
 
 </beans>

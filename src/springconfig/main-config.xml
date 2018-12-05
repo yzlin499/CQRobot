@@ -18,14 +18,14 @@
 
     <!--线程区-->
     <unit:list id="threadList" value-type="java.lang.Thread">
-        <bean class="java.lang.Thread" c:target-ref="autoSign"/>
-        <bean class="java.lang.Thread" c:target-ref="kdRoomPool"/>
-        <bean class="java.lang.Thread" c:target-ref="raisePool"/>
-        <bean class="java.lang.Thread" c:target-ref="weiBoPool"/>
+        <bean class="java.lang.Thread" c:target-ref="autoSign" p:name="Thread-autoSign"/>
+        <bean class="java.lang.Thread" c:target-ref="kdRoomPool" p:name="Thread-kdRoomPool"/>
+        <bean class="java.lang.Thread" c:target-ref="raisePool" p:name="Thread-raisePool"/>
+        <bean class="java.lang.Thread" c:target-ref="weiBoPool" p:name="Thread-weiBoPool"/>
 
-        <bean class="java.lang.Thread" c:target-ref="zjyDouYin"/>
+        <bean class="java.lang.Thread" c:target-ref="zjyDouYin" p:name="Thread-zjyDouYin"/>
 
-        <bean class="java.lang.Thread" c:target-ref="xccDouYin"/>
+        <bean class="java.lang.Thread" c:target-ref="xccDouYin" p:name="Thread-xccDouYin"/>
     </unit:list>
 
     <bean id="raisePool" class="top.yzlin.monitoring.MonitoringMoreData"
@@ -33,16 +33,10 @@
           p:frequency="${raise.Frequency}"/>
 
     <unit:list id="raiseMonitoringList" value-type="top.yzlin.raise.AbstractMonitoring">
-        <!--<ref bean="zjyModian"/>-->
+        <ref bean="zjyModian"/>
         <ref bean="srModian"/>
-        <ref bean="srModian2"/>
         <ref bean="teamXRaffle"/>
-
-        <ref bean="sxrModian"/>
-        <ref bean="sxrModian2"/>
-        <ref bean="sxrModian3"/>
-        <ref bean="sxrModian4"/>
-        <ref bean="sxrModian5"/>
+        <!--<ref bean="sxrModian"/>-->
     </unit:list>
 
     <bean id="kdRoomPool" class="top.yzlin.monitoring.MonitoringMoreData"
@@ -60,10 +54,10 @@
           p:frequency="${weiBo.Frequency}"/>
 
     <unit:list id="weiBoList" value-type="top.yzlin.weibo.WeiBoMonitoring">
-        <ref bean="srWeiBo"/>
-        <ref bean="xccWeiBo"/>
-        <ref bean="zjyWeiBo"/>
-        <ref bean="srWeiBo"/>
+        <!--<ref bean="srWeiBo"/>-->
+        <!--<ref bean="xccWeiBo"/>-->
+        <!--<ref bean="zjyWeiBo"/>-->
+        <!--<ref bean="srWeiBo"/>-->
     </unit:list>
 
 </beans>

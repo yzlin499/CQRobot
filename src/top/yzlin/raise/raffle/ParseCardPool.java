@@ -20,13 +20,13 @@ public class ParseCardPool {
 
     private SAXReader reader = new SAXReader();
 
-    public RandomRaise[] parseRandomForXml(File file) {
+    public RandomRaise<RafflePrize>[] parseRandomForXml(File file) {
         try {
             Element rootElement = reader.read(file).getRootElement();
             List<Element> elementList = rootElement.elements("cardPool");
-            RandomRaise[] randomRaises = new RandomRaise[elementList.size()];
+            RandomRaise<RafflePrize>[] randomRaises = new RandomRaise[elementList.size()];
             for (int i = 0; i < randomRaises.length; i++) {
-                randomRaises[i] = new RandomRaise();
+                randomRaises[i] = new RandomRaise<>();
                 Element cardPool = elementList.get(i);
                 randomRaises[i].setMinLimit(Double.parseDouble(cardPool.attributeValue("money")));
                 randomRaises[i].addRafflePrize(cardPool.elements("card").stream()

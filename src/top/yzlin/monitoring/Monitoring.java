@@ -1,5 +1,6 @@
 package top.yzlin.monitoring;
 
+import com.alibaba.fastjson.JSON;
 import top.yzlin.tools.Tools;
 
 import java.util.function.Consumer;
@@ -38,7 +39,14 @@ public abstract class Monitoring<T> implements Runnable {
     protected abstract boolean predicate(T newData,T oldData);
 
     void initOldData(){
-        oldData=baseData.getData()[0];
+        try {
+            oldData = baseData.getData()[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Tools.print("初始化数据失败,类" + baseData.getClass() + "10s之后重来");
+            Tools.print(JSON.toJSON(baseData));
+            Tools.sleep(10000);
+            initOldData();
+        }
     }
 
     void doMonitoring(){

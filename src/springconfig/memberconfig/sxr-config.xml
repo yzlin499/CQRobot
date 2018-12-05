@@ -31,26 +31,6 @@
           c:groupID="${SXR.groupID}"
           c:cqRobot-ref="cqSXR"/>
 
-    <bean id="sxrModian2" class="top.yzlin.raise.ModianMonitoring"
-          c:proID="36061"
-          c:groupID="${SXR.groupID}"
-          c:cqRobot-ref="cqSXR"/>
-
-    <bean id="sxrModian3" class="top.yzlin.raise.ModianMonitoring"
-          c:proID="36060"
-          c:groupID="${SXR.groupID}"
-          c:cqRobot-ref="cqSXR"/>
-
-    <bean id="sxrModian4" class="top.yzlin.raise.ModianMonitoring"
-          c:proID="36059"
-          c:groupID="${SXR.groupID}"
-          c:cqRobot-ref="cqSXR"/>
-
-    <bean id="sxrModian5" class="top.yzlin.raise.ModianMonitoring"
-          c:proID="36058"
-          c:groupID="${SXR.groupID}"
-          c:cqRobot-ref="cqSXR"/>
-
     <bean id="sxrWeiBo" class="top.yzlin.weibo.WeiBoMonitoring"
           c:cqRobot-ref="cqSXR"
           c:groupID="${SXR.groupID}"

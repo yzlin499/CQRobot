@@ -4,14 +4,19 @@ import java.util.EnumSet;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+
 public enum KDRoomType {
+    /**
+     * 取消代码规范警告
+     */
     TEXT("text", "消息"),
     FAIPAI_TEXT("faipaiText", "翻牌"),
     LIVE("live", "直播"),
     DIANTAI("diantai", "电台"),
     IMAGE("image", "图片"),
     AUDIO("audio", "音频"),
-    IDOLFLIP("idolFlip", "付费翻牌");
+    IDOLFLIP("idolFlip", "付费翻牌"),
+    VIDEO_RECORD("videoRecord", "视频");
 
     private String name;
     private String cnName;

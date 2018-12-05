@@ -8,7 +8,9 @@ import top.yzlin.tools.SetConnection;
 import top.yzlin.tools.Tools;
 
 import java.io.File;
-import java.util.*;
+import java.util.EnumSet;
+import java.util.Objects;
+import java.util.Set;
 import java.util.function.Predicate;
 
 public class KDRoom implements BaseData<KDRoomInfo> {
@@ -53,9 +55,9 @@ public class KDRoom implements BaseData<KDRoomInfo> {
 
     public void setFunction(KDRoomType kdRoomType,boolean status){
         if(status){
-            setFunctionOn(KDRoomType.TEXT);
+            setFunctionOn(kdRoomType);
         }else{
-            setFunctionDown(KDRoomType.TEXT);
+            setFunctionDown(kdRoomType);
         }
     }
 
@@ -150,6 +152,7 @@ public class KDRoom implements BaseData<KDRoomInfo> {
                                 temp.setText(extInfo.getString("referenceContent"));
                                 break;
                             case AUDIO:
+                            case VIDEO_RECORD:
                             case IMAGE:
                                 try {
                                     temp.setMsg(JSONObject.parseObject(

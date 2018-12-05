@@ -16,6 +16,7 @@ public class WeiBo implements BaseData<WeiBoInfo> {
     private String name;
 
     public WeiBo(String name) {
+        Tools.print(name + "微博监控");
         JSONObject jo = getUIDAndVerifier(name);
         if (jo != null) {
             param = "isTitle=0&noborder=0&uid=" +

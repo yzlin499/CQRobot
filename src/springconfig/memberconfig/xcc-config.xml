@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:c="http://www.springframework.org/schema/c" xmlns="http://www.springframework.org/schema/beans"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean name="cqXCC" class="top.yzlin.cqrobotsdk.Lemoc" c:port="${XCC.port}"/>
@@ -10,9 +11,15 @@
           c:name="徐晨辰"
           c:gid="${XCC.groupID}"/>
 
-    <bean id="xccWeiBo" class="top.yzlin.yyh.XCCWeiBo"
+    <bean id="xccWeiBo" class="top.yzlin.weibo.WeiBoMonitoring"
           c:cqRobot-ref="cqXCC"
-          c:name="徐晨辰"
-          c:groupID="${XCC.groupID}"/>
+          c:groupID="${XCC.groupID}">
+        <constructor-arg name="weiBo">
+            <bean class="top.yzlin.weibo.WeiBo"
+                  c:name="徐晨辰"
+                  c:uid="3050758665"
+                  c:verifier="655ac839"/>
+        </constructor-arg>
+    </bean>
 
 </beans>

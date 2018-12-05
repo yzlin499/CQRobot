@@ -3,7 +3,7 @@
        xmlns:c="http://www.springframework.org/schema/c" xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="teamXRaffle" class="top.yzlin.raise.ModianMonitoring"
+    <bean id="teamXRaffle" class="top.yzlin.yyh.TeamXRaffle"
           c:cqRobot-ref="cqZJY"
           c:groupID="${TeamX.groupID}"
           c:proID="${TeamX.proID}"/>

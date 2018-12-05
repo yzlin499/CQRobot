@@ -10,7 +10,7 @@ public class RereadMachine {
     private int threshold = 4;
     private int breakCount = -1;
     private String lastRecord = "";
-    private String breakMsg;
+    private String breakMsg = "断";
     private CQRobot cqRobot;
     private String gid;
 

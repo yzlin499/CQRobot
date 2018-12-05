@@ -58,7 +58,10 @@ public class DouYin implements BaseData<DouYinInfo> {
                     conn.setRequestProperty("accept-language", "zh-CN,zh;q=0.9");
                     conn.setRequestProperty("user-agent", "Mozilla/5.0 (Linux; U; Android 2.2; en-us; Nexus One Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1");
                 });
-        return JSONObject.parseObject(str).getJSONArray("aweme_list").toJavaList(JSONObject.class)
+        System.out.println(str);
+        return JSONObject.parseObject(str)
+                .getJSONArray("aweme_list")
+                .toJavaList(JSONObject.class)
                 .stream()
                 .map(j -> {
                     DouYinInfo douYinInfo = new DouYinInfo();

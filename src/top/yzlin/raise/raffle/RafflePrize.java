@@ -8,7 +8,7 @@ import java.util.Objects;
  *
  */
 public class RafflePrize implements Comparable<RafflePrize> {
-    static RafflePrize empty;
+    public static RafflePrize empty;
 
     static {
         empty = new RafflePrize("bug奖品", 0x7fffffff);

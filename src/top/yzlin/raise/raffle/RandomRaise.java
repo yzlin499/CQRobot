@@ -33,6 +33,9 @@ public class RandomRaise<T extends RafflePrize> {
 
     public void setRafflePrizeList(ArrayList<T> rafflePrizeList) {
         this.rafflePrizeList = rafflePrizeList;
+        probabilitySum = rafflePrizeList.stream()
+                .mapToInt(RafflePrize::getProbability)
+                .sum();
     }
 
     public void addRafflePrize(T... prize) {

@@ -50,15 +50,15 @@ public class AbstractMonitoring extends Monitoring<RaiseData> {
      * @param raiseData
      */
     final void sendMsg(RaiseData raiseData, double nowMoney) {
-        Tools.print("[" + raiseProject.title + "]项目" + raiseData.getNickName() + "资助" + raiseData.getRaiseMoney() + "元");
+        Tools.print("[" + raiseProject.getTitle() + "]项目" + raiseData.getNickName() + "资助" + raiseData.getRaiseMoney() + "元");
         cqRobot.sendGroupMsg(groupID,
                 sendText(raiseData.getNickName(),
                         raiseData.getRaiseMoney(),
                         nowMoney,
-                        raiseProject.title,
-                        raiseProject.goalMoney,
-                        raiseProject.moneyUrl,
-                        raiseProject.endTime) +
+                        raiseProject.getTitle(),
+                        raiseProject.getGoalMoney(),
+                        raiseProject.getMoneyUrl(),
+                        raiseProject.getEndTime()) +
                         (raiseEvent == null ? "" : raiseEvent.eventTrigger(raiseData)));
     }
 

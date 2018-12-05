@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONObject;
 import java.io.*;
 import java.math.BigInteger;
 import java.net.HttpURLConnection;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.security.MessageDigest;
@@ -87,6 +86,7 @@ public class Tools {
             connection.connect();
         } catch (IOException e) {
             Tools.print("get的网络区炸了，10秒之后重新获取");
+            Tools.print(e.getCause() + ":" + e.getMessage());
             Tools.sleep(10000);
             return Tools.sendGet(url, param,connections);
         }
@@ -279,12 +279,15 @@ public class Tools {
      * @param str 要计算的字符串
      */
     public static String MD5(String str){
-        try {
-            md.update(str.getBytes("utf8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+        StringBuilder num = new StringBuilder();
+        synchronized (md) {
+            try {
+                md.update(str.getBytes("utf8"));
+                num.append(new BigInteger(1, md.digest()).toString(16));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
         }
-        StringBuilder num = new StringBuilder(new BigInteger(1, md.digest()).toString(16));
         while(num.length()<32){
             num.insert(0, "0");
         }

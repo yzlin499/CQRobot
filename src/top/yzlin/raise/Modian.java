@@ -3,11 +3,9 @@ package top.yzlin.raise;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
-import top.yzlin.monitoring.BaseData;
 import top.yzlin.tools.Tools;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
@@ -29,11 +27,11 @@ public class Modian extends RaiseProject{
                 throw new IOException();
             }
             data = data.getJSONArray("data").getJSONObject(0);
-            title=data.getString("pro_name");
-            goalMoney=data.getDoubleValue("goal");
-            endTime=data.getString("end_time");
-            moneyUrl="https://zhongchou.modian.com/item/" + projectID + ".html";
-            Tools.print(title+"项目初始化");
+            setTitle(data.getString("pro_name"));
+            setGoalMoney(data.getDoubleValue("goal"));
+            setEndTime(data.getString("end_time"));
+            setMoneyUrl("https://zhongchou.modian.com/item/" + projectID + ".html");
+            Tools.print(getTitle() + "项目初始化");
         } catch (IOException e) {
             e.printStackTrace();
             Tools.print("集资初始化失败，炸了，重启吧");

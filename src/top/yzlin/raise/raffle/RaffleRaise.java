@@ -19,10 +19,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.util.function.Function;
 
 /**
@@ -328,7 +325,9 @@ public class RaffleRaise implements RaiseEvent {
         if (rafflePrizeMap.containsKey(name)) {
             HashMap<String, Integer> tempMap = rafflePrizeMap.get(name);
             StringBuilder strb = new StringBuilder(prizeKind + "获得情况:");
-            tempMap.forEach((k, v) -> strb.append('\n').append(k).append(":").append(v.intValue()));
+            tempMap.entrySet().stream()
+                    .sorted(Comparator.comparing(Map.Entry::getKey))
+                    .forEach(e -> strb.append('\n').append(e.getKey()).append(":").append(e.getValue().intValue()));
             return strb.toString();
         } else {
             return "没有关于这个人的集资记录";
