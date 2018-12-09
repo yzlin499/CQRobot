@@ -18,6 +18,10 @@ public class Modian extends RaiseProject{
     }
 
     public Modian(String projectID){
+        init(projectID);
+    }
+
+    private void init(String projectID) {
         infoParam = "pro_id=" + projectID + "&sign=" + Tools.MD5("pro_id=" + projectID + "&p=das41aq6").substring(5, 21);
         ordersParam = "page=1&pro_id=" + projectID + "&sign=" + Tools.MD5("page=1&pro_id=" + projectID + "&p=das41aq6").substring(5, 21);
         try {
@@ -36,6 +40,10 @@ public class Modian extends RaiseProject{
             e.printStackTrace();
             Tools.print("集资初始化失败，炸了，重启吧");
         }
+    }
+
+    public void setProjectID(String projectID) {
+        init(projectID);
     }
 
     public String getInfoParam() {
@@ -84,7 +92,7 @@ public class Modian extends RaiseProject{
             String data = Tools.sendPost("https://wds.modian.com/api/project/orders", ordersParam);
             JSONObject t = JSONObject.parseObject(data);
             if (!"0".equals(t.getString("status"))) {
-                Tools.print(t.getString("message"));
+                Tools.print(t.getString("message") + ordersParam);
                 throw new IOException("非200");
             }
             JSONArray tja = t.getJSONArray("data");
