@@ -4,6 +4,7 @@ import top.yzlin.cqrobotsdk.msginterface.EventSolution;
 
 public interface CQRobot {
 
+
     void sendPersonMsg(String qqID, String msg);
 
     void sendGroupMsg(String groupID, String msg);

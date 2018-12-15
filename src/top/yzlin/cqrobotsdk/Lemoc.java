@@ -2,17 +2,10 @@ package top.yzlin.cqrobotsdk;
 
 import com.alibaba.fastjson.JSONObject;
 import org.java_websocket.client.WebSocketClient;
-import org.java_websocket.drafts.Draft_17;
-import org.java_websocket.handshake.ServerHandshake;
 import top.yzlin.cqrobotsdk.cqinfo.AbstractInfo;
 import top.yzlin.cqrobotsdk.msginterface.EventSolution;
 import top.yzlin.cqrobotsdk.msginterface.reply.*;
-import top.yzlin.tools.Tools;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -105,10 +98,15 @@ public class Lemoc implements CQRobot{
      */
     public final static int GET_STRANGER_INFOMATION = 25304;
 
+    /**
+     * 这实在是很可恶的一个代码，我实在是不知道怎么去解决
+     */
+    public static final int GET_GROUP_UPLOAD_FILE = 4444;
+
     // </editor-fold>
 
     private WebSocketClient client;
-    private TypeFactory typeFactory = TypeFactory.getInstance();
+    private LemocTypeFactory lemocTypeFactory = LemocTypeFactory.getInstance();
     private Map<Integer,List<EventSolution>> eventListMap=new HashMap<>();
 
     /**
@@ -135,44 +133,9 @@ public class Lemoc implements CQRobot{
      */
     public Lemoc(String wsPath, String port) {
         //配置服务器
-        try {
-            client = new WebSocketClient(new URI(wsPath + ':' + port), new Draft_17()) {
-                @Override
-                public void onOpen(ServerHandshake arg0) {
-                    Tools.print("成功链接webSocket,端口:" + port);
-                }
-
-                @Override
-                public void onMessage(String arg) {
-                    Lemoc.this.onMessage(JSONObject.parseObject(arg));
-                }
-
-                @Override
-                public void onError(Exception arg0) {
-                    arg0.printStackTrace();
-                    Tools.log(arg0.getMessage());
-                    Tools.print("CQRoot出错了，炸了炸了");
-                }
-
-                @Override
-                public void onClose(int arg0, String arg1, boolean arg2) {
-                    Tools.print("关闭连接，断开");
-                }
-
-                @Override
-                public void onMessage(ByteBuffer bytes) {
-                    try {
-                        System.out.println(new String(bytes.array(), "utf-8"));
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-            };
-            client.connect();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+        client = new JSONWebSocketClient(wsPath + ':' + port);
+        ((JSONWebSocketClient) client).setOnMessage(this::onMessage);
+        client.connect();
     }
 
     /**
@@ -235,7 +198,7 @@ public class Lemoc implements CQRobot{
      */
     private void onMessage(JSONObject msg) {
         int act = msg.getIntValue("act");
-        AbstractInfo info = msg.toJavaObject(typeFactory.getInfoClass(act));
+        AbstractInfo info = msg.toJavaObject(lemocTypeFactory.getInfoClass(act));
         getEventList(act).forEach(item -> item.msgSolution(info));
     }
 
@@ -271,7 +234,7 @@ public class Lemoc implements CQRobot{
         } else {
             for (Class clazz : msm.getClass().getInterfaces()){
                 if (EventSolution.class.isAssignableFrom(clazz)) {
-                    return getEventList(typeFactory.getEventClass(clazz)).add(msm);
+                    return getEventList(lemocTypeFactory.getEventClass(clazz)).add(msm);
                 }
             }
         }
@@ -288,7 +251,7 @@ public class Lemoc implements CQRobot{
     public boolean removeMsgSolution(EventSolution msm) {
         for (Class clazz : msm.getClass().getInterfaces()) {
             if (EventSolution.class.isAssignableFrom(clazz)) {
-                return getEventList(typeFactory.getEventClass(clazz)).remove(msm);
+                return getEventList(lemocTypeFactory.getEventClass(clazz)).remove(msm);
             }
         }
         return false;
@@ -298,6 +261,7 @@ public class Lemoc implements CQRobot{
      * 重写这个方法，在close方法调用之前运行
      */
     protected void destruct() {
+
     }
 
     /**
@@ -307,7 +271,10 @@ public class Lemoc implements CQRobot{
     public void close() {
         destruct();
         client.close();
+        eventListMap.forEach((k, v) -> v.clear());
+        eventListMap.clear();
+        eventListMap = null;
+        lemocTypeFactory = null;
+        client = null;
     }
-
-
 }

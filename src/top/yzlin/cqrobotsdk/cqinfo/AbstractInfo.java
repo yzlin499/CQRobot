@@ -5,7 +5,7 @@ public abstract class AbstractInfo {
     private int act = -1;
     private String fromQQ = "";
     private long sendTime;
-    private int subType = -1;
+    private String subType = "";
 
     public int getAct() {
         return act;
@@ -31,11 +31,11 @@ public abstract class AbstractInfo {
         this.sendTime = sendTime;
     }
 
-    public int getSubType() {
+    public String getSubType() {
         return subType;
     }
 
-    public void setSubType(int subType) {
+    public void setSubType(String subType) {
         this.subType = subType;
     }
 }

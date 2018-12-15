@@ -45,4 +45,13 @@ public class BanInfo {
         this.addTime = addTime;
     }
 
+    @Override
+    public String toString() {
+        return "BanInfo{" +
+                "targetQQ='" + targetQQ + '\'' +
+                ", fromGroup='" + fromGroup + '\'' +
+                ", describe='" + describe + '\'' +
+                ", addTime=" + addTime +
+                '}';
+    }
 }

@@ -13,8 +13,22 @@
     <bean name="kdValidation" class="top.yzlin.koudai48.KDValidation"
           c:account="${account}"/>
 
-    <bean id="autoSign" class="top.yzlin.koudai48.KDAutoSign"
-          c:kdValidation-ref="kdValidation"/>
+
+    <bean id="autoSign" class="top.yzlin.koudai48.KDAutoSignPools">
+        <constructor-arg name="kdAutoSigns">
+            <list value-type="top.yzlin.koudai48.KDAutoSign">
+                <bean class="top.yzlin.koudai48.KDAutoSign"
+                      c:kdValidation-ref="kdValidation"/>
+                <bean class="top.yzlin.koudai48.KDAutoSign">
+                    <constructor-arg name="kdValidation">
+                        <bean class="top.yzlin.koudai48.KDValidation"
+                              c:account="13954796247"/>
+                    </constructor-arg>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
+
 
     <!--线程区-->
     <unit:list id="threadList" value-type="java.lang.Thread">
@@ -23,9 +37,9 @@
         <bean class="java.lang.Thread" c:target-ref="raisePool" p:name="Thread-raisePool"/>
         <bean class="java.lang.Thread" c:target-ref="weiBoPool" p:name="Thread-weiBoPool"/>
 
-        <bean class="java.lang.Thread" c:target-ref="zjyDouYin" p:name="Thread-zjyDouYin"/>
+        <!--<bean class="java.lang.Thread" c:target-ref="zjyDouYin" p:name="Thread-zjyDouYin"/>-->
 
-        <bean class="java.lang.Thread" c:target-ref="xccDouYin" p:name="Thread-xccDouYin"/>
+        <!--<bean class="java.lang.Thread" c:target-ref="xccDouYin" p:name="Thread-xccDouYin"/>-->
     </unit:list>
 
     <bean id="raisePool" class="top.yzlin.monitoring.MonitoringMoreData"
@@ -35,7 +49,7 @@
     <unit:list id="raiseMonitoringList" value-type="top.yzlin.raise.AbstractMonitoring">
         <ref bean="zjyModian"/>
         <ref bean="srModian"/>
-        <ref bean="teamXRaffle"/>
+        <!--<ref bean="teamXRaffle"/>-->
         <!--<ref bean="sxrModian"/>-->
     </unit:list>
 
@@ -54,10 +68,10 @@
           p:frequency="${weiBo.Frequency}"/>
 
     <unit:list id="weiBoList" value-type="top.yzlin.weibo.WeiBoMonitoring">
-        <!--<ref bean="srWeiBo"/>-->
-        <!--<ref bean="xccWeiBo"/>-->
-        <!--<ref bean="zjyWeiBo"/>-->
-        <!--<ref bean="srWeiBo"/>-->
+        <ref bean="srWeiBo"/>
+        <ref bean="xccWeiBo"/>
+        <ref bean="zjyWeiBo"/>
+        <ref bean="srWeiBo"/>
     </unit:list>
 
 </beans>

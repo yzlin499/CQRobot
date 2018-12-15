@@ -5,15 +5,15 @@ import top.yzlin.cqrobotsdk.msginterface.*;
 
 import java.util.HashMap;
 
-public class TypeFactory {
-    private final static TypeFactory instance = new TypeFactory();
+public class LemocTypeFactory {
+    private final static LemocTypeFactory INSTANCE = new LemocTypeFactory();
 
-    private TypeFactory() {
+    private LemocTypeFactory() {
         init();
     }
 
-    public static TypeFactory getInstance() {
-        return instance;
+    public static LemocTypeFactory getInstance() {
+        return INSTANCE;
     }
 
     private HashMap<Integer, Class<? extends AbstractInfo>> beanMap = new HashMap<>();
@@ -46,7 +46,7 @@ public class TypeFactory {
         return beanMap.getOrDefault(act, AbstractInfo.class);
     }
 
-    public Integer getEventClass(Class<?> act) {
+    public Integer getEventClass(Class<? extends EventSolution> act) {
         return eventMap.get(act);
     }
 }

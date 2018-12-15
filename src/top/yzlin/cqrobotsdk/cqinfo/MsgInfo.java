@@ -9,6 +9,10 @@ public class MsgInfo extends AbstractInfo{
     private String nick="";
     private String sex="";
     private String age="";
+    /**
+     * 一个来源于httpapi的字段
+     */
+    private String rawMsg = "";
 
     public String getMsg() {
         return msg;
@@ -48,5 +52,13 @@ public class MsgInfo extends AbstractInfo{
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    public String getRawMsg() {
+        return rawMsg;
+    }
+
+    public void setRawMsg(String rawMsg) {
+        this.rawMsg = rawMsg;
     }
 }
