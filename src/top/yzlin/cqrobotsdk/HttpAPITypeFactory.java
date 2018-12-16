@@ -163,4 +163,6 @@ class HttpAPITypeFactory {
         info.setResponseFlag(data.getString("flag"));
         return info;
     }
+
+
 }

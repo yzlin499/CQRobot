@@ -4,12 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import org.java_websocket.client.WebSocketClient;
 import top.yzlin.cqrobotsdk.cqinfo.AbstractInfo;
 import top.yzlin.cqrobotsdk.msginterface.EventSolution;
-import top.yzlin.cqrobotsdk.msginterface.reply.*;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * MsgTools是通过酷Q机器人的LEMOC插件，与Q群机器人进行通信的类
@@ -19,95 +13,10 @@ import java.util.Map;
  *
  * @author yzlin
  */
-public class Lemoc implements CQRobot{
-
-    // <editor-fold desc="各种状态码">
-    // <editor-fold desc="接收到的状态码">
-    /**
-     * 接收群信息
-     */
-    public final static int GET_GROUP_MSG = 2;
-    /**
-     * 接收讨论组信息
-     */
-    public final static int GET_DISCUSS_MSG = 4;
-    /**
-     * 接收私聊(个人)信息
-     */
-    public final static int GET_PERSON_MSG = 21;
-    /**
-     * 管理员变动
-     */
-    public final static int GET_GROUP_ADMIN_CHANGE = 101;
-    /**群成员增加*/
-    public final static int GET_GROUP_MEMBER_INCREASE = 103;
-    /**群成员减少*/
-    public final static int GET_GROUP_MEMBER_DECREASE = 102;
-    /**好友增加*/
-    public final static int GET_FRIEND_INCREASE = 201;
-    /**好友增加请求*/
-    public final static int GET_FRIEND_REQUEST = 301;
-    /**群增加请求*/
-    public final static int GET_GROUP_REQUEST = 302;
-    // </editor-fold>
-    /**删除群成员*/
-    public final static int GROUP_DELETE_MEMBER = 120;
-    /**
-     * 发送群消息
-     */
-    public final static int SEND_GROUP_MSG = 101;
-    /**
-     * 发送讨论组消息
-     */
-    public final static int SEND_DISCUSS_MSG = 103;
-    /**
-     * 发送私聊(个人)消息
-     */
-    public final static int SEND_PERSON_MSG = 106;
-    /**
-     * 发送赞
-     */
-    public final static int SEND_PRAISE = 110;
-    /**
-     * 全群禁言
-     */
-    public final static int GROUP_BANNED = 123;
-    /**
-     * 匿名成员禁言
-     */
-    public final static int ANONYMOUS_MEMBER_BANNED = 124;
-    /**
-     * 群匿名设置
-     */
-    public final static int SET_GROUP_ANONYMOUS = 125;
-    /**
-     * 群成员名片设置
-     */
-    public final static int SET_MEMBER_CARD = 126;
-    /**
-     * 群成员专属头衔
-     */
-    public final static int SET_MEMBER_SPECIAL_TITLE = 128;
-
-    /**
-     * json串方式返回群成员信息
-     */
-    public final static int GET_MEMBER_INFOMATION = 20303;
-    /**
-     * json串方式返回陌生人信息
-     */
-    public final static int GET_STRANGER_INFOMATION = 25304;
-
-    /**
-     * 这实在是很可恶的一个代码，我实在是不知道怎么去解决
-     */
-    public static final int GET_GROUP_UPLOAD_FILE = 4444;
-
-    // </editor-fold>
+public class Lemoc extends AbstractCQRobot {
 
     private WebSocketClient client;
     private LemocTypeFactory lemocTypeFactory = LemocTypeFactory.getInstance();
-    private Map<Integer,List<EventSolution>> eventListMap=new HashMap<>();
 
     /**
      * 实例化一个链接的客户端，本地
@@ -199,62 +108,7 @@ public class Lemoc implements CQRobot{
     private void onMessage(JSONObject msg) {
         int act = msg.getIntValue("act");
         AbstractInfo info = msg.toJavaObject(lemocTypeFactory.getInfoClass(act));
-        getEventList(act).forEach(item -> item.msgSolution(info));
-    }
-
-    private List<EventSolution> getEventList(Integer integer) {
-        if (eventListMap.containsKey(integer)){
-            return eventListMap.get(integer);
-        }else{
-            List<EventSolution> eventSolutionList = new ArrayList<>();
-            eventListMap.put(integer, eventSolutionList);
-            return eventSolutionList;
-        }
-    }
-
-    /**
-     * 添加群事件处理
-     *
-     * @param msm 注册事件
-     * @return 是否注册成功
-     */
-    @Override
-    public boolean addMsgSolution(EventSolution msm) {
-        if (msm instanceof ReplySolution) {
-            int type = 0;
-            if (msm instanceof GroupMsgReply) {
-                type = GET_GROUP_MSG;
-            } else if (msm instanceof PersonMsgReply) {
-                type = GET_PERSON_MSG;
-            } else if (msm instanceof DiscussMsgReply) {
-                type = GET_DISCUSS_MSG;
-            }
-            return getEventList(type).add(
-                    new ProxyReplySolution(this, (ReplySolution) msm, type));
-        } else {
-            for (Class clazz : msm.getClass().getInterfaces()){
-                if (EventSolution.class.isAssignableFrom(clazz)) {
-                    return getEventList(lemocTypeFactory.getEventClass(clazz)).add(msm);
-                }
-            }
-        }
-        return false;
-    }
-
-    /**
-     * 删除事件
-     *
-     * @param msm 删除事件
-     * @return 是否删除成功
-     */
-    @Override
-    public boolean removeMsgSolution(EventSolution msm) {
-        for (Class clazz : msm.getClass().getInterfaces()) {
-            if (EventSolution.class.isAssignableFrom(clazz)) {
-                return getEventList(lemocTypeFactory.getEventClass(clazz)).remove(msm);
-            }
-        }
-        return false;
+        triggerEvent(info);
     }
 
     /**
@@ -271,10 +125,13 @@ public class Lemoc implements CQRobot{
     public void close() {
         destruct();
         client.close();
-        eventListMap.forEach((k, v) -> v.clear());
-        eventListMap.clear();
-        eventListMap = null;
+        super.close();
         lemocTypeFactory = null;
         client = null;
+    }
+
+    @Override
+    protected Integer getEventClass(Class<? extends EventSolution> act) {
+        return lemocTypeFactory.getEventClass(act);
     }
 }

@@ -1,10 +1,12 @@
 package top.yzlin.cqrobotsdk;
 
 import com.alibaba.fastjson.JSONObject;
+import top.yzlin.cqrobotsdk.cqinfo.AbstractInfo;
 import top.yzlin.cqrobotsdk.msginterface.EventSolution;
 
-public class HttpAPI implements CQRobot {
-
+public class HttpAPI extends AbstractCQRobot {
+    private HttpAPITypeFactory factory = HttpAPITypeFactory.getInstance();
+    private LemocTypeFactory lemocTypeFactory = LemocTypeFactory.getInstance();
     private JSONWebSocketClient apiClient;
     private JSONWebSocketClient eventClient;
 
@@ -36,17 +38,19 @@ public class HttpAPI implements CQRobot {
         //配置服务器
         apiClient = new JSONWebSocketClient(wsPath + ':' + port + "/api/");
         eventClient = new JSONWebSocketClient(wsPath + ':' + port + "/event/");
-        eventClient.setOnMessage(this::onMessage);
+        apiClient.setOnMessage(this::onAPIMessage);
+        eventClient.setOnMessage(this::onEventMessage);
         apiClient.connect();
         eventClient.connect();
     }
 
-    public static void main(String[] args) {
-        CQRobot cqRobot = new HttpAPI(6700);
+    private void onAPIMessage(JSONObject jo) {
+        //待定
     }
 
-    private void onMessage(JSONObject jo) {
-        System.out.println(jo);
+    private void onEventMessage(JSONObject jo) {
+        AbstractInfo info = factory.getInfo(jo);
+        triggerEvent(info);
     }
 
     private JSONObject makeJSON(String action, JSONObject params) {
@@ -80,17 +84,25 @@ public class HttpAPI implements CQRobot {
     }
 
     @Override
-    public boolean addMsgSolution(EventSolution msm) {
-        return false;
+    protected Integer getEventClass(Class<? extends EventSolution> act) {
+        return lemocTypeFactory.getEventClass(act);
     }
 
-    @Override
-    public boolean removeMsgSolution(EventSolution msm) {
-        return false;
+    /**
+     * 重写这个方法，在close方法调用之前运行
+     */
+    protected void destruct() {
+
     }
 
     @Override
     public void close() {
-
+        destruct();
+        apiClient.close();
+        eventClient.close();
+        super.close();
+        factory = null;
+        apiClient = null;
+        eventClient = null;
     }
 }

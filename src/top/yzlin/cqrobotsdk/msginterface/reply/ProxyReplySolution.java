@@ -1,5 +1,6 @@
 package top.yzlin.cqrobotsdk.msginterface.reply;
 
+import top.yzlin.cqrobotsdk.CQRobot;
 import top.yzlin.cqrobotsdk.Lemoc;
 import top.yzlin.cqrobotsdk.cqinfo.DiscussMsgInfo;
 import top.yzlin.cqrobotsdk.cqinfo.GroupMsgInfo;
@@ -12,7 +13,7 @@ public class ProxyReplySolution implements EventSolution<MsgInfo> {
     private ReplySolution replySolution;
     private Function<MsgInfo, Void> strategy;
 
-    public ProxyReplySolution(Lemoc cqRobot, ReplySolution replySolution, int type) {
+    public ProxyReplySolution(CQRobot cqRobot, ReplySolution replySolution, int type) {
         this.replySolution = replySolution;
         switch (type) {
             case Lemoc.GET_GROUP_MSG:
