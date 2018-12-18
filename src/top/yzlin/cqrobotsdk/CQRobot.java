@@ -139,4 +139,8 @@ public interface CQRobot {
     static String getAudioCQCode(String audioFile, boolean magic) {
         return "[CQ:record,file=" + audioFile + (magic ? ",magic=true" : "") + "]";
     }
+
+    static String getAtCQCode(String qqID) {
+        return "[CQ:at,qq=" + qqID + "]";
+    }
 }

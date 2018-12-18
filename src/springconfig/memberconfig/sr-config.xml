@@ -5,7 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean name="cqSR" class="top.yzlin.cqrobotsdk.Lemoc" c:port="${SR.port}"/>
+    <bean name="cqSR" class="top.yzlin.cqrobotsdk.HttpAPI" c:port="${SR.port}"/>
 
     <bean id="srModian" class="top.yzlin.yyh.SRModian"
           c:cqRobot-ref="cqSR"
@@ -18,7 +18,8 @@
 
     <bean id="srWeiBo" class="top.yzlin.weibo.WeiBoMonitoring"
           c:cqRobot-ref="cqSR"
-          c:groupID="${SR.groupID}">
+          c:groupID="${SR.groupID}"
+          p:sendImg="true">
         <constructor-arg name="weiBo">
             <bean class="top.yzlin.weibo.WeiBo"
                   c:name="孙芮"
@@ -27,9 +28,13 @@
         </constructor-arg>
     </bean>
 
+    <bean class="top.yzlin.yyh.SRGroupAdd" c:cqRobot-ref="cqSR" c:groupID="${SR.groupID}"/>
+
+
     <bean id="srKD" class="top.yzlin.koudai48.KDRoomMonitoring"
           c:groupID="${SR.groupID}"
-          c:cqRobot-ref="cqSR">
+          c:cqRobot-ref="cqSR"
+          p:CQPath="HttpApi">
         <constructor-arg name="kdRoom">
             <bean class="top.yzlin.koudai48.KDRoom"
                   c:memberName="孙芮"

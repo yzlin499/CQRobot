@@ -3,7 +3,7 @@
        xmlns:c="http://www.springframework.org/schema/c" xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="cqSXR" class="top.yzlin.cqrobotsdk.Lemoc" c:port="${SXR.port}"/>
+    <bean id="cqSXR" class="top.yzlin.cqrobotsdk.HttpAPI" c:port="${SXR.port}"/>
 
     <bean id="sxrKD" class="top.yzlin.yyh.SXRKDRoom"
           c:groupID="${SXR.groupID}"

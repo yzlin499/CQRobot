@@ -4,12 +4,11 @@ import top.yzlin.cqrobotsdk.CQRobot;
 import top.yzlin.monitoring.Monitoring;
 import top.yzlin.tools.Tools;
 
-import java.util.Objects;
-
 public class WeiBoMonitoring extends Monitoring<WeiBoInfo> {
     private String groupID;
     private CQRobot cqRobot;
     private String name;
+    private boolean isSendImg = false;
 
     public WeiBoMonitoring(String name,String groupID,CQRobot cqRobot){
         this(new WeiBo(name),groupID,cqRobot);
@@ -27,10 +26,17 @@ public class WeiBoMonitoring extends Monitoring<WeiBoInfo> {
         });
     }
 
+    public boolean isSendImg() {
+        return isSendImg;
+    }
+
+    public void setSendImg(boolean sendImg) {
+        isSendImg = sendImg;
+    }
 
     @Override
     protected boolean predicate(WeiBoInfo newData, WeiBoInfo oldData) {
-        return ((newData.getDate().getTime() - oldData.getDate().getTime()) > (1000 * 150)) && (!Objects.equals(newData, oldData));
+        return newData.getId() > oldData.getId();
     }
 
     private void sendMsg(WeiBoInfo weiBoInfo) {
@@ -43,7 +49,8 @@ public class WeiBoMonitoring extends Monitoring<WeiBoInfo> {
             return name + "转发了一条微博:\n" +
                     weiBoInfo.getText() + '\n' +
                     "原文:" + weiBoInfo.getRepostText() + '\n' +
-                    "链接:" + Tools.getTinyURL(weiBoInfo.getUrl());
+                    "链接:" + Tools.getTinyURL(weiBoInfo.getUrl()) +
+                    ((!isSendImg || weiBoInfo.getImg().length == 0) ? "" : "\n" + CQRobot.getImgCQCode(weiBoInfo.getImg()[0]));
         } else {
             return name + "发了一条微博:\n" +
                     weiBoInfo.getText() + '\n' +

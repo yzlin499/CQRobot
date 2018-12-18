@@ -4,7 +4,7 @@
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean name="cqZJY" class="top.yzlin.cqrobotsdk.Lemoc" c:port="${ZJY.port}"/>
+    <bean name="cqZJY" class="top.yzlin.cqrobotsdk.HttpAPI" c:port="${ZJY.port}"/>
 
     <!--集资-->
     <bean id="zjyModian" class="top.yzlin.yyh.ZJYModian"
@@ -27,15 +27,21 @@
     <!--微博-->
     <bean id="zjyWeiBo" class="top.yzlin.weibo.WeiBoMonitoring"
           c:cqRobot-ref="cqZJY"
-          c:name="张嘉予"
-          c:groupID="${ZJY.groupID}"/>
+          c:groupID="${ZJY.groupID}">
+        <constructor-arg name="weiBo">
+            <bean class="top.yzlin.weibo.WeiBo"
+                  c:name="张嘉予"
+                  c:uid="5861113498"/>
+        </constructor-arg>
+    </bean>
 
     <!--口袋监控-->
     <bean id="zjyKD" class="top.yzlin.yyh.ZJYKDRoom"
           c:memberName="张嘉予"
           c:groupID="${ZJY.groupID}"
           c:cqRobot-ref="cqZJY"
-          c:kdValidation-ref="kdValidation"/>
+          c:kdValidation-ref="kdValidation"
+          p:CQPath="HttpApi"/>
 
     <!--关键字-->
     <bean class="top.yzlin.cqrobotsdk.keywordfunc.KeyWord"
@@ -48,6 +54,4 @@
             </list>
         </constructor-arg>
     </bean>
-
-
 </beans>

@@ -1,6 +1,7 @@
 package top.yzlin.koudai48;
 
 import top.yzlin.cqrobotsdk.CQRobot;
+import top.yzlin.cqrobotsdk.HttpAPI;
 import top.yzlin.monitoring.Monitoring;
 import top.yzlin.tools.Tools;
 
@@ -15,7 +16,7 @@ import java.time.Clock;
 public class KDRoomMonitoring extends Monitoring<KDRoomInfo> {
     private String groupID;
     private CQRobot cqRobot;
-    private static String CQPath = null;
+    private String CQPath = null;
 
     public KDRoomMonitoring(KDValidation kdValidation, String memberName,String groupID,CQRobot cqRobot){
         this(new KDRoom(kdValidation,memberName),groupID,cqRobot);
@@ -46,6 +47,8 @@ public class KDRoomMonitoring extends Monitoring<KDRoomInfo> {
     private String saveAudio(String file) {
         if (CQPath == null) {
             return Tools.getTinyURL(file);
+        } else if (cqRobot instanceof HttpAPI) {
+            return CQRobot.getAudioCQCode(file, false);
         } else {
             String date = "" + Clock.systemDefaultZone().millis() + ".amr";
             try (FileOutputStream fps = new FileOutputStream(CQPath + "\\data\\record\\" + date)) {
@@ -59,9 +62,9 @@ public class KDRoomMonitoring extends Monitoring<KDRoomInfo> {
                 return CQRobot.getAudioCQCode(date, false);
             } catch (IOException e) {
                 e.printStackTrace();
+                return file;
             }
         }
-        return null;
     }
 
     /**
@@ -73,6 +76,8 @@ public class KDRoomMonitoring extends Monitoring<KDRoomInfo> {
     private String saveImage(String file) {
         if (CQPath == null) {
             return Tools.getTinyURL(file);
+        } else if (cqRobot instanceof HttpAPI) {
+            return CQRobot.getImgCQCode(file);
         } else {
             String date = "" + Clock.systemDefaultZone().millis() + ".jpg";
             try {
@@ -95,9 +100,9 @@ public class KDRoomMonitoring extends Monitoring<KDRoomInfo> {
             case TEXT:
                 return kdRoomInfo.getSender() + "说:" + kdRoomInfo.getMsg();
             case IMAGE:
-                return kdRoomInfo.getSender() + "发了一张图片:" + kdRoomInfo.getMsg();
+                return kdRoomInfo.getSender() + "发了一张图片:\n" + kdRoomInfo.getMsg();
             case AUDIO:
-                return kdRoomInfo.getSender() + "发了一段音频" + kdRoomInfo.getMsg();
+                return kdRoomInfo.getSender() + "发了一段音频:\n" + kdRoomInfo.getMsg();
             case FAIPAI_TEXT:
                 return kdRoomInfo.getSender() + ':' + kdRoomInfo.getMsg() + "\n被翻牌:" + kdRoomInfo.getText();
             case IDOLFLIP:
@@ -116,15 +121,17 @@ public class KDRoomMonitoring extends Monitoring<KDRoomInfo> {
      * 如果你的酷Q是AIR版本(免费版本),那么请不要使用这个函数,谢谢,免得信息错误
      *
      * @param cqPath 酷Q的路径
-     * @return 设置成功将返回true
      */
-    public boolean setCQPath(String cqPath) {
-        File f = new File(cqPath);
-        if (f.exists()) {
-            CQPath = cqPath;
-            return true;
+    public void setCQPath(String cqPath) {
+        if ("HttpApi".equals(cqPath) && cqRobot instanceof HttpAPI) {
+            CQPath = "";
+            Tools.print("成功设置为HttpAPI发图");
+        } else {
+            File f = new File(cqPath);
+            if (f.exists()) {
+                CQPath = cqPath;
+            }
         }
-        return false;
     }
 
     /**
@@ -137,6 +144,9 @@ public class KDRoomMonitoring extends Monitoring<KDRoomInfo> {
                 break;
             case AUDIO:
                 data.setMsg(saveAudio(data.getMsg()));
+                break;
+            case VIDEO_RECORD:
+                data.setMsg(Tools.getTinyURL(data.getMsg()));
                 break;
             case LIVE:
             case DIANTAI:

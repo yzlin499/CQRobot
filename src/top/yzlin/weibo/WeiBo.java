@@ -2,33 +2,30 @@ package top.yzlin.weibo;
 
 import com.alibaba.fastjson.JSONObject;
 import org.jsoup.Jsoup;
-import org.jsoup.select.Elements;
 import top.yzlin.monitoring.BaseData;
 import top.yzlin.tools.Tools;
 
-import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 public class WeiBo implements BaseData<WeiBoInfo> {
-
     private String param;
     private String name;
+    private static List<JSONObject> memberTemp;
+    private String uid;
 
     public WeiBo(String name) {
         Tools.print(name + "微博监控");
         JSONObject jo = getUIDAndVerifier(name);
         if (jo != null) {
-            param = "isTitle=0&noborder=0&uid=" +
-                    jo.getString("weibo_uid") + "&verifier=" +
-                    jo.getString("weibo_verifier") + "&isFans=0&isWeibo=1";
+            param = "containerid=107603" + (uid = jo.getString("weibo_uid"));
         }
         this.name = name;
     }
 
-    public WeiBo(String name, String uid, String verifier) {
-        this.name = name;
-        param = "isTitle=0&noborder=0&uid=" + uid + "&verifier=" + verifier + "&isFans=0&isWeibo=1";
+    public WeiBo(String name, String uid) {
+        this(name, uid, null);
     }
 
     public String getName() {
@@ -39,56 +36,19 @@ public class WeiBo implements BaseData<WeiBoInfo> {
         this.name = name;
     }
 
-
-    @Override
-    public WeiBoInfo[] getData(Predicate<WeiBoInfo> predicate) {
-        return Jsoup.parse(Tools.sendGet("http://widget.weibo.com/weiboshow/index.php", param))
-                .getElementById("weibo_list")
-                .getElementsByClass("weiboShow_mainFeed_list")
-                .stream()
-                .map(e -> {
-                    WeiBoInfo weiBoInfo = new WeiBoInfo();
-                    weiBoInfo.setUrl(e.attr("gosrc"));
-                    weiBoInfo.setText(e.getElementsByClass("weiboShow_mainFeed_listContent_txt").get(0).text());
-                    String time[] = e.getElementsByClass("weiboShow_mainFeed_listContent_actionTime").get(0).child(0).text().split("[^\\d]+");
-                    Calendar calendar = Calendar.getInstance();
-                    switch (time.length) {
-                        case 1:
-                            calendar.add(Calendar.MINUTE, -Integer.parseInt(time[0]));
-                            break;
-                        case 3:
-                            calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time[1]));
-                            calendar.set(Calendar.MINUTE, Integer.parseInt(time[2]));
-                            break;
-                        case 4:
-                            calendar.set(Calendar.MONTH, Integer.parseInt(time[0]) - 1);
-                            calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(time[1]));
-                            calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time[2]));
-                            calendar.set(Calendar.MINUTE, Integer.parseInt(time[3]));
-                            break;
-                        default:
-                            Tools.print("出现不能预测的代码:" + e.getElementsByClass("weiboShow_mainFeed_listContent_actionTime").get(0));
-                    }
-                    weiBoInfo.setDate(calendar.getTime());
-                    Elements elements = e.getElementsByClass("relay_user_words");
-                    if (elements.size() > 0) {
-                        weiBoInfo.setRepost(true);
-                        weiBoInfo.setRepostText(elements.get(0).text().substring(1));
-                    } else {
-                        weiBoInfo.setRepost(false);
-                    }
-                    return weiBoInfo;
-                })
-                .filter(predicate)
-                .toArray(WeiBoInfo[]::new);
+    public WeiBo(String name, String uid, String verifier) {
+        this.name = name;
+        param = "containerid=107603" + uid;
+        this.uid = uid;
     }
 
     public static JSONObject getUIDAndVerifier(String name) {
-        String memberData = Tools.sendGet("http://h5.snh48.com/resource/jsonp/members.php", "gid=00&callback=get_members_success");
-        List<JSONObject> jo = JSONObject.parseObject(
-                memberData.substring(memberData.indexOf('(') + 1, memberData.lastIndexOf(')'))
-        ).getJSONArray("rows").toJavaList(JSONObject.class);
-        for (JSONObject j : jo) {
+        if (memberTemp == null) {
+            String data = Tools.sendGet("http://h5.snh48.com/resource/jsonp/members.php", "gid=00&callback=get_members_success");
+            JSONObject memberData = JSONObject.parseObject(data.substring(data.indexOf('(') + 1, data.lastIndexOf(')')));
+            memberTemp = memberData.getJSONArray("rows").toJavaList(JSONObject.class);
+        }
+        for (JSONObject j : memberTemp) {
             if (name.equals(j.getString("sname"))) {
                 return j;
             }
@@ -96,4 +56,41 @@ public class WeiBo implements BaseData<WeiBoInfo> {
         Tools.print("查无此人:" + name);
         return null;
     }
+
+    @Override
+    public WeiBoInfo[] getData(Predicate<WeiBoInfo> predicate) {
+        JSONObject jo = JSONObject.parseObject(Tools.sendGet("https://m.weibo.cn/api/container/getIndex", param));
+        if (jo.getIntValue("ok") == 1) {
+            return jo.getJSONObject("data").getJSONArray("cards").toJavaList(JSONObject.class).stream()
+                    .filter(j -> j.getIntValue("card_type") == 9 && !j.getJSONObject("mblog").containsKey("title"))
+                    .map(j -> {
+                        WeiBoInfo weiBoInfo = new WeiBoInfo();
+                        String url = j.getString("scheme");
+                        int n = url.indexOf("/status/");
+                        weiBoInfo.setUrl("https://weibo.com/" + uid + '/' + url.substring(n + 8, url.indexOf('?', n)));
+                        JSONObject mblog = j.getJSONObject("mblog");
+                        weiBoInfo.setId(mblog.getLongValue("id"));
+                        if (mblog.containsKey("retweeted_status")) {
+                            weiBoInfo.setText(mblog.getString("raw_text"));
+                            weiBoInfo.setRepost(true);
+                            weiBoInfo.setImg(WeiBoInfo.EMPTY_IMG);
+                            weiBoInfo.setRepostText(Jsoup.parse(mblog.getJSONObject("retweeted_status").getString("text")).text());
+                        } else {
+                            weiBoInfo.setText(Jsoup.parse(mblog.getString("text")).text());
+                            weiBoInfo.setRepost(false);
+                            weiBoInfo.setImg(Optional.ofNullable(mblog.getJSONArray("pics"))
+                                    .map(a -> a.toJavaList(JSONObject.class).stream()
+                                            .map(i -> i.getString("url"))
+                                            .toArray(String[]::new))
+                                    .orElse(WeiBoInfo.EMPTY_IMG));
+                        }
+                        return weiBoInfo;
+                    }).filter(predicate)
+                    .toArray(WeiBoInfo[]::new);
+        } else {
+            Tools.print(jo.getString("msg"));
+            return new WeiBoInfo[0];
+        }
+    }
 }
+

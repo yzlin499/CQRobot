@@ -3,6 +3,7 @@ package top.yzlin.cqrobotsdk;
 import com.alibaba.fastjson.JSONObject;
 import top.yzlin.cqrobotsdk.cqinfo.AbstractInfo;
 import top.yzlin.cqrobotsdk.msginterface.EventSolution;
+import top.yzlin.tools.Tools;
 
 public class HttpAPI extends AbstractCQRobot {
     private HttpAPITypeFactory factory = HttpAPITypeFactory.getInstance();
@@ -50,7 +51,11 @@ public class HttpAPI extends AbstractCQRobot {
 
     private void onEventMessage(JSONObject jo) {
         AbstractInfo info = factory.getInfo(jo);
-        triggerEvent(info);
+        if (info == null) {
+            Tools.print(jo);
+        } else {
+            triggerEvent(info);
+        }
     }
 
     private JSONObject makeJSON(String action, JSONObject params) {
@@ -105,4 +110,5 @@ public class HttpAPI extends AbstractCQRobot {
         apiClient = null;
         eventClient = null;
     }
+
 }

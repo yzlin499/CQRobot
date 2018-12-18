@@ -1,14 +1,26 @@
 package top.yzlin.weibo;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
 
 public class WeiBoInfo {
+    public static final String[] EMPTY_IMG = new String[0];
+    private long id;
     private String text;
-    private String repostText;
+    private String repostText = "";
     private String url;
+    private String[] img = EMPTY_IMG;
     private boolean isRepost;
     private Date date;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getText() {
         return text;
@@ -28,6 +40,14 @@ public class WeiBoInfo {
 
     public String getUrl() {
         return url;
+    }
+
+    public String[] getImg() {
+        return img;
+    }
+
+    public void setImg(String[] img) {
+        this.img = img;
     }
 
     public void setUrl(String url) {
@@ -59,21 +79,33 @@ public class WeiBoInfo {
             return false;
         }
         WeiBoInfo weiBoInfo = (WeiBoInfo) o;
-        return isRepost == weiBoInfo.isRepost &&
-                (Math.abs(date.getTime() - weiBoInfo.date.getTime()) < 1000 * 120) &&
-                Objects.equals(url, weiBoInfo.url) &&
+        return id == weiBoInfo.id &&
+                isRepost == weiBoInfo.isRepost &&
                 Objects.equals(text, weiBoInfo.text) &&
-                Objects.equals(repostText, weiBoInfo.repostText);
+                Objects.equals(repostText, weiBoInfo.repostText) &&
+                Objects.equals(url, weiBoInfo.url) &&
+                Arrays.equals(img, weiBoInfo.img) &&
+                Objects.equals(date, weiBoInfo.date);
+    }
+
+    @Override
+    public int hashCode() {
+
+        int result = Objects.hash(id, text, repostText, url, isRepost, date);
+        result = 31 * result + Arrays.hashCode(img);
+        return result;
     }
 
     @Override
     public String toString() {
         return "WeiBoInfo{" +
-                "text='" + text + '\'' +
-                (isRepost ? (", repostText='" + repostText + '\'') : "") +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", repostText='" + repostText + '\'' +
+                ", url='" + url + '\'' +
+                ", img=" + Arrays.toString(img) +
                 ", isRepost=" + isRepost +
                 ", date=" + date +
-                ", url='" + url + '\'' +
                 '}';
     }
 }
