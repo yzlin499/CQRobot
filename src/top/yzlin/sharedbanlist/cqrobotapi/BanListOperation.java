@@ -1,9 +1,11 @@
 package top.yzlin.sharedbanlist.cqrobotapi;
 
+import top.yzlin.cqrobotsdk.CQRobot;
 import top.yzlin.cqrobotsdk.cqinfo.PersonMsgInfo;
 import top.yzlin.cqrobotsdk.msginterface.reply.PersonMsgReply;
 import top.yzlin.sharedbanlist.BanInfo;
 import top.yzlin.sharedbanlist.BanListAPI;
+import top.yzlin.tools.Tools;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -13,14 +15,17 @@ import java.util.Set;
 public class BanListOperation implements PersonMsgReply {
 
     private final OperationInterface[] operationInterfaces = {
-            new AddBanList(), new DeleteBanList()
+            new AddBanList(), new DeleteBanList(), new IsInBanList()
     };
+
     private BanListAPI banListAPI;
     private Set<String> adminSet;
     private int operation;
 
-    public BanListOperation(String[] admins) {
+    public BanListOperation(String[] admins, BanListAPI banListAPI, CQRobot cqRobot) {
         adminSet = new HashSet<>(Arrays.asList(admins));
+        this.banListAPI = banListAPI;
+        cqRobot.addMsgSolution(this);
     }
 
     @Override
@@ -41,6 +46,9 @@ public class BanListOperation implements PersonMsgReply {
 
     @Override
     public String replyMsg(PersonMsgInfo a) {
+        if (operation != 2) {
+            Tools.print(a.getFromQQ() + "黑名单操作" + a.getMsg());
+        }
         return operationInterfaces[operation].reply(this);
     }
 

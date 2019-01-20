@@ -49,6 +49,7 @@
     <unit:list id="raiseMonitoringList" value-type="top.yzlin.raise.AbstractMonitoring">
         <ref bean="zjyModian"/>
         <ref bean="srModian"/>
+        <ref bean="sr2Modian"/>
         <!--<ref bean="teamXRaffle"/>-->
         <!--<ref bean="sxrModian"/>-->
     </unit:list>
@@ -60,6 +61,7 @@
     <unit:list id="kdRoomList" value-type="top.yzlin.koudai48.KDRoomMonitoring">
         <ref bean="zjyKD"/>
         <ref bean="srKD"/>
+        <ref bean="sr2KD"/>
         <ref bean="sxrKD"/>
     </unit:list>
 
@@ -69,9 +71,10 @@
 
     <unit:list id="weiBoList" value-type="top.yzlin.weibo.WeiBoMonitoring">
         <ref bean="srWeiBo"/>
+        <ref bean="sr2WeiBo"/>
         <ref bean="xccWeiBo"/>
         <ref bean="zjyWeiBo"/>
-        <ref bean="srWeiBo"/>
+        <ref bean="sxrWeiBo"/>
     </unit:list>
 
 </beans>

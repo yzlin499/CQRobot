@@ -130,7 +130,9 @@ public class KDRoom implements BaseData<KDRoomInfo> {
                         KDRoomType type = KDRoomType.parse(extInfo.getString("messageObject"));
                         temp.setMsgType(type);
                         if (type == null) {
-                            Tools.print("未知数据:" + extInfo);
+                            if (!"juju".equals(extInfo.getString("source"))) {
+                                Tools.print("未知数据:" + extInfo);
+                            }
                             return null;
                         } else if (!msgTypeSet.contains(type)) {
                             return null;

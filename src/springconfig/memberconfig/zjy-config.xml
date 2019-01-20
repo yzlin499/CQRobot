@@ -54,4 +54,21 @@
             </list>
         </constructor-arg>
     </bean>
+
+    <bean class="top.yzlin.sharedbanlist.cqrobotapi.BanListOperation"
+          c:cqRobot-ref="cqZJY">
+        <constructor-arg name="admins">
+            <array>
+                <value>499680328</value>
+            </array>
+        </constructor-arg>
+        <constructor-arg name="banListAPI">
+            <bean class="top.yzlin.sharedbanlist.BanListAPI"
+                  c:operatorQQ="499680328"
+                  c:privateKey="${banListPrivateKey}"
+                  c:fromGroup="${ZJY.groupID}"/>
+        </constructor-arg>
+    </bean>
+
+
 </beans>

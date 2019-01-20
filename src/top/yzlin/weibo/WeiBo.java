@@ -21,6 +21,7 @@ public class WeiBo implements BaseData<WeiBoInfo> {
         if (jo != null) {
             param = "containerid=107603" + (uid = jo.getString("weibo_uid"));
         }
+        System.out.println(uid);
         this.name = name;
     }
 

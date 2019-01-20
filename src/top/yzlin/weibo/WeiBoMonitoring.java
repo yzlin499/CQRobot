@@ -49,12 +49,12 @@ public class WeiBoMonitoring extends Monitoring<WeiBoInfo> {
             return name + "转发了一条微博:\n" +
                     weiBoInfo.getText() + '\n' +
                     "原文:" + weiBoInfo.getRepostText() + '\n' +
-                    "链接:" + Tools.getTinyURL(weiBoInfo.getUrl()) +
-                    ((!isSendImg || weiBoInfo.getImg().length == 0) ? "" : "\n" + CQRobot.getImgCQCode(weiBoInfo.getImg()[0]));
+                    "链接:" + Tools.getTinyURL(weiBoInfo.getUrl());
         } else {
             return name + "发了一条微博:\n" +
                     weiBoInfo.getText() + '\n' +
-                    "链接:" + Tools.getTinyURL(weiBoInfo.getUrl());
+                    "链接:" + Tools.getTinyURL(weiBoInfo.getUrl()) +
+                    ((isSendImg && weiBoInfo.getImg().length != 0) ? "\n" + CQRobot.getImgCQCode(weiBoInfo.getImg()[0]) : "");
         }
     }
 }

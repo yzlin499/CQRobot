@@ -27,6 +27,7 @@ public class BanListAPI {
 
     private String token;
     private long addTime = 0;
+    private String fromGroup;
 
     private HashMap<String, String> tokenMap = new HashMap<>();
     private HashMap<String, String> isBanMap = new HashMap<>();
@@ -36,7 +37,6 @@ public class BanListAPI {
 
 
     public BanListAPI(String fromGroup, String privateKey, String operatorQQ) {
-
         tokenMap.put(PARAM_T, FUNC_GET_TOKEN);
         tokenMap.put(PARAM_PRIVATE_KEY, privateKey);
         tokenMap.put(PARAM_OPERATOR_QQ, operatorQQ);
@@ -53,6 +53,12 @@ public class BanListAPI {
 
         listMap.put(PARAM_T, FUNC_GET_BAN_LIST);
         listMap.put(PARAM_FROM_GROUP, fromGroup);
+
+        this.fromGroup = fromGroup;
+    }
+
+    public String getFromGroup() {
+        return fromGroup;
     }
 
     public List<BanInfo> isInBanList(String targetQQ) {

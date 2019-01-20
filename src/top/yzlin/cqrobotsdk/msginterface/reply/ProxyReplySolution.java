@@ -7,11 +7,11 @@ import top.yzlin.cqrobotsdk.cqinfo.GroupMsgInfo;
 import top.yzlin.cqrobotsdk.cqinfo.MsgInfo;
 import top.yzlin.cqrobotsdk.msginterface.EventSolution;
 
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 public class ProxyReplySolution implements EventSolution<MsgInfo> {
     private ReplySolution replySolution;
-    private Function<MsgInfo, Void> strategy;
+    private Consumer<MsgInfo> strategy;
 
     public ProxyReplySolution(CQRobot cqRobot, ReplySolution replySolution, int type) {
         this.replySolution = replySolution;
@@ -22,7 +22,6 @@ public class ProxyReplySolution implements EventSolution<MsgInfo> {
                     if (text != null) {
                         cqRobot.sendGroupMsg(((GroupMsgInfo) m).getFromGroup(), text);
                     }
-                    return null;
                 };
                 break;
             case Lemoc.GET_PERSON_MSG:
@@ -31,7 +30,6 @@ public class ProxyReplySolution implements EventSolution<MsgInfo> {
                     if (text != null) {
                         cqRobot.sendPersonMsg(m.getFromQQ(), text);
                     }
-                    return null;
                 };
                 break;
             case Lemoc.GET_DISCUSS_MSG:
@@ -40,18 +38,18 @@ public class ProxyReplySolution implements EventSolution<MsgInfo> {
                     if (text != null) {
                         cqRobot.sendDiscussMsg(((DiscussMsgInfo) m).getFromDiscuss(), text);
                     }
-                    return null;
                 };
                 break;
             default:
-                strategy = m-> null;
+                strategy = m -> {
+                };
         }
     }
 
     @Override
     public void msgSolution(MsgInfo msgInfo) {
         if (replySolution.filter(msgInfo)) {
-            strategy.apply(msgInfo);
+            strategy.accept(msgInfo);
         }
     }
 }
