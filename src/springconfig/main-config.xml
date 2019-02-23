@@ -50,8 +50,10 @@
         <ref bean="zjyModian"/>
         <ref bean="srModian"/>
         <ref bean="sr2Modian"/>
+        <ref bean="srModian2"/>
+        <ref bean="sr2Modian2"/>
         <!--<ref bean="teamXRaffle"/>-->
-        <!--<ref bean="sxrModian"/>-->
+        <ref bean="sxrModian"/>
     </unit:list>
 
     <bean id="kdRoomPool" class="top.yzlin.monitoring.MonitoringMoreData"

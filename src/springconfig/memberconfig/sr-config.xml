@@ -12,6 +12,11 @@
           c:groupID="${SR.groupID}"
           c:proID="${SR.proID}"/>
 
+    <bean id="srModian2" class="top.yzlin.yyh.SRModian"
+          c:cqRobot-ref="cqSR"
+          c:groupID="${SR.groupID}"
+          c:proID="49747"/>
+
     <bean class="top.yzlin.cqrobotsdk.RereadMachine"
           c:cqRobot-ref="cqSR"
           c:gid="${SR.groupID}"/>

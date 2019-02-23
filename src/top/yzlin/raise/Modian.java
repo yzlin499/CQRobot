@@ -17,6 +17,11 @@ public class Modian extends RaiseProject{
         this(String.valueOf(projectID));
     }
 
+    public static void main(String[] args) {
+        new Modian("39367");
+    }
+
+
     public Modian(String projectID){
         init(projectID);
     }

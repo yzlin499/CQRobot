@@ -2,7 +2,6 @@ package top.yzlin.cqrobotsdk;
 
 import com.alibaba.fastjson.JSONObject;
 import org.java_websocket.client.WebSocketClient;
-import org.java_websocket.drafts.Draft_17;
 import org.java_websocket.handshake.ServerHandshake;
 import top.yzlin.tools.Tools;
 
@@ -23,7 +22,7 @@ public class JSONWebSocketClient extends WebSocketClient {
     }
 
     public JSONWebSocketClient(URI serverUri) {
-        super(serverUri, new Draft_17());
+        super(serverUri);
         port = serverUri.getPort();
     }
 

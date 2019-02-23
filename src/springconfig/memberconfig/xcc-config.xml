@@ -6,10 +6,10 @@
 
     <bean name="cqXCC" class="top.yzlin.cqrobotsdk.HttpAPI" c:port="${XCC.port}"/>
 
-    <bean id="xccDouYin" class="top.yzlin.yyh.XCCDouYin"
-          c:cqRoot-ref="cqXCC"
-          c:name="徐晨辰"
-          c:gid="${XCC.groupID}"/>
+    <!--<bean id="xccDouYin" class="top.yzlin.yyh.XCCDouYin"-->
+    <!--c:cqRoot-ref="cqXCC"-->
+    <!--c:name="徐晨辰"-->
+    <!--c:gid="${XCC.groupID}"/>-->
 
     <bean id="xccWeiBo" class="top.yzlin.weibo.WeiBoMonitoring"
           c:cqRobot-ref="cqXCC"

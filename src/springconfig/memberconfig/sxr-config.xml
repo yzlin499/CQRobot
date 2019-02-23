@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:c="http://www.springframework.org/schema/c" xmlns="http://www.springframework.org/schema/beans"
-       xmlns:p="http://www.springframework.org/schema/p"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:uint="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
     <bean id="cqSXR" class="top.yzlin.cqrobotsdk.HttpAPI" c:port="${SXR.port}"/>
 
     <bean id="sxrKD" class="top.yzlin.yyh.SXRKDRoom"
           c:groupID="${SXR.groupID}"
-          c:cqRobot-ref="cqSXR">
+          c:cqRobot-ref="cqSXR"
+          p:CQPath="HttpApi">
         <constructor-arg name="kdRoom">
             <bean class="top.yzlin.koudai48.KDRoom"
                   c:memberName="宋昕冉"
@@ -28,7 +29,7 @@
     </bean>
 
     <bean id="sxrModian" class="top.yzlin.raise.ModianMonitoring"
-          c:proID="36062"
+          c:proID="${SXR.proID}"
           c:groupID="${SXR.groupID}"
           c:cqRobot-ref="cqSXR"/>
 
@@ -42,4 +43,30 @@
                   c:uid="5479678683"/>
         </constructor-arg>
     </bean>
+
+
+    <!--黑名单组件-->
+    <bean id="sxrBanListAPI" class="top.yzlin.sharedbanlist.BanListAPI"
+          c:operatorQQ="499680328"
+          c:privateKey="${banListPrivateKey}"
+          c:fromGroup="${SXR.groupID}"/>
+
+    <!--黑名单-->
+    <bean class="top.yzlin.sharedbanlist.cqrobotapi.BanListOperation"
+          c:cqRobot-ref="cqSXR"
+          c:admins-ref="sxrAdminList"
+          c:banListAPI-ref="sxrBanListAPI"/>
+
+    <!--黑名单警告-->
+    <bean class="top.yzlin.sharedbanlist.cqrobotapi.CheckNewMember"
+          c:banListAPI-ref="sxrBanListAPI"
+          c:admins-ref="sxrAdminList"
+          c:groupID="${SXR.groupID}"
+          c:cqRobot-ref="cqSXR"/>
+
+    <!--管理员名单-->
+    <uint:list id="sxrAdminList" value-type="java.lang.String">
+        <value>499680328</value>
+        <value>359075322</value>
+    </uint:list>
 </beans>
