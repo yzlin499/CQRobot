@@ -1,0 +1,1517 @@
+[
+  {
+    "id": 1,
+    "name": "张语格",
+    "nickName": "SNH48-张语格",
+    "roomId": 67313770
+  },
+  {
+    "id": 3,
+    "name": "陈观慧",
+    "nickName": "SNH48-陈观慧",
+    "roomId": 67217593
+  },
+  {
+    "id": 4,
+    "name": "陈佳莹",
+    "nickName": "SNH48-陈佳莹",
+    "roomId": 67313820
+  },
+  {
+    "id": 5,
+    "name": "袁雨桢",
+    "nickName": "SNH48-袁雨桢",
+    "roomId": 67265391
+  },
+  {
+    "id": 7,
+    "name": "冯薪朵",
+    "nickName": "SNH48-冯薪朵",
+    "roomId": 67236624
+  },
+  {
+    "id": 8,
+    "name": "孙芮",
+    "nickName": "SNH48-孙芮",
+    "roomId": 67322480
+  },
+  {
+    "id": 10,
+    "name": "何晓玉",
+    "nickName": "SNH48-何晓玉",
+    "roomId": 67370525
+  },
+  {
+    "id": 11,
+    "name": "温晶婕",
+    "nickName": "SNH48-温晶婕",
+    "roomId": 67246085
+  },
+  {
+    "id": 12,
+    "name": "唐安琪",
+    "nickName": "SNH48-唐安琪",
+    "roomId": 67313812
+  },
+  {
+    "id": 14,
+    "name": "徐子轩",
+    "nickName": "SNH48-徐子轩",
+    "roomId": 67313790
+  },
+  {
+    "id": 16,
+    "name": "李艺彤",
+    "nickName": "SNH48-李艺彤",
+    "roomId": 67322469
+  },
+  {
+    "id": 17,
+    "name": "蒋芸",
+    "nickName": "SNH48-蒋芸",
+    "roomId": 67256337
+  },
+  {
+    "id": 18,
+    "name": "徐晨辰",
+    "nickName": "SNH48-徐晨辰",
+    "roomId": 67284386
+  },
+  {
+    "id": 19,
+    "name": "孔肖吟",
+    "nickName": "SNH48-孔肖吟",
+    "roomId": 67333101
+  },
+  {
+    "id": 20,
+    "name": "李宇琪",
+    "nickName": "SNH48-李宇琪",
+    "roomId": 67303256
+  },
+  {
+    "id": 21,
+    "name": "许佳琪",
+    "nickName": "SNH48-许佳琪",
+    "roomId": 67217577
+  },
+  {
+    "id": 22,
+    "name": "黄婷婷",
+    "nickName": "SNH48-黄婷婷",
+    "roomId": 67265435
+  },
+  {
+    "id": 24,
+    "name": "林思意",
+    "nickName": "SNH48-林思意",
+    "roomId": 67217583
+  },
+  {
+    "id": 25,
+    "name": "万丽娜",
+    "nickName": "SNH48-万丽娜",
+    "roomId": 67236607
+  },
+  {
+    "id": 27,
+    "name": "赵粤",
+    "nickName": "SNH48-赵粤",
+    "roomId": 67284410
+  },
+  {
+    "id": 33,
+    "name": "易嘉爱",
+    "nickName": "SNH48-易嘉爱",
+    "roomId": 67199574
+  },
+  {
+    "id": 34,
+    "name": "陆婷",
+    "nickName": "SNH48-陆婷",
+    "roomId": 67189770
+  },
+  {
+    "id": 35,
+    "name": "莫寒",
+    "nickName": "SNH48-莫寒",
+    "roomId": 67313807
+  },
+  {
+    "id": 36,
+    "name": "钱蓓婷",
+    "nickName": "SNH48-钱蓓婷",
+    "roomId": 67275458
+  },
+  {
+    "id": 37,
+    "name": "陈思",
+    "nickName": "SNH48-陈思",
+    "roomId": 67284428
+  },
+  {
+    "id": 38,
+    "name": "戴萌",
+    "nickName": "SNH48-戴萌",
+    "roomId": 67199568
+  },
+  {
+    "id": 39,
+    "name": "吴哲晗",
+    "nickName": "SNH48-吴哲晗",
+    "roomId": 67217571
+  },
+  {
+    "id": 40,
+    "name": "邱欣怡",
+    "nickName": "SNH48-邱欣怡",
+    "roomId": 67352247
+  },
+  {
+    "id": 45,
+    "name": "谢妮",
+    "nickName": "SNH48-谢妮",
+    "roomId": 67342068
+  },
+  {
+    "id": 46,
+    "name": "刘佩鑫",
+    "nickName": "SNH48-刘佩鑫",
+    "roomId": 67352253
+  },
+  {
+    "id": 49,
+    "name": "曾艳芬",
+    "nickName": "SNH48-曾艳芬",
+    "roomId": 67217584
+  },
+  {
+    "id": 67,
+    "name": "袁丹妮",
+    "nickName": "SNH48-袁丹妮",
+    "roomId": 67352249
+  },
+  {
+    "id": 68,
+    "name": "陈问言",
+    "nickName": "SNH48-陈问言",
+    "roomId": 67207827
+  },
+  {
+    "id": 2470,
+    "name": "徐晗",
+    "nickName": "SNH48-徐晗",
+    "roomId": 67333058
+  },
+  {
+    "id": 2508,
+    "name": "张昕",
+    "nickName": "SNH48-张昕",
+    "roomId": 67265436
+  },
+  {
+    "id": 5562,
+    "name": "林楠",
+    "nickName": "SNH48-林楠",
+    "roomId": 67246064
+  },
+  {
+    "id": 5566,
+    "name": "许杨玉琢",
+    "nickName": "SNH48-许杨玉琢",
+    "roomId": 67236636
+  },
+  {
+    "id": 5574,
+    "name": "张雨鑫",
+    "nickName": "SNH48-张雨鑫",
+    "roomId": 67217613
+  },
+  {
+    "id": 5973,
+    "nickName": "SNH48",
+    "roomId": 67207881
+  },
+  {
+    "id": 6429,
+    "name": "赵晔",
+    "nickName": "SNH48-赵晔",
+    "roomId": 67313732
+  },
+  {
+    "id": 6431,
+    "name": "陈琳",
+    "nickName": "SNH48-陈琳",
+    "roomId": 67207851
+  },
+  {
+    "id": 6432,
+    "name": "冯晓菲",
+    "nickName": "SNH48-冯晓菲",
+    "roomId": 67246079
+  },
+  {
+    "id": 6734,
+    "name": "李晶",
+    "nickName": "SNH48-李晶",
+    "roomId": 67265437
+  },
+  {
+    "id": 6735,
+    "name": "李钊",
+    "nickName": "SNH48-李钊",
+    "roomId": 67275459
+  },
+  {
+    "id": 6737,
+    "name": "邵雪聪",
+    "nickName": "SNH48-邵雪聪",
+    "roomId": 67275431
+  },
+  {
+    "id": 6738,
+    "name": "宋昕冉",
+    "nickName": "SNH48-宋昕冉",
+    "roomId": 67352254
+  },
+  {
+    "id": 6739,
+    "name": "孙歆文",
+    "nickName": "SNH48-孙歆文",
+    "roomId": 67199596
+  },
+  {
+    "id": 6740,
+    "name": "汪佳翎",
+    "nickName": "SNH48-汪佳翎",
+    "roomId": 67303255
+  },
+  {
+    "id": 6742,
+    "name": "王晓佳",
+    "nickName": "SNH48-王晓佳",
+    "roomId": 67390943
+  },
+  {
+    "id": 6743,
+    "name": "谢天依",
+    "nickName": "SNH48-谢天依",
+    "roomId": 67207831
+  },
+  {
+    "id": 6744,
+    "name": "杨冰怡",
+    "nickName": "SNH48-杨冰怡",
+    "roomId": 67333093
+  },
+  {
+    "id": 6745,
+    "name": "闫明筠",
+    "nickName": "BEJ48-闫明筠",
+    "roomId": 67333066
+  },
+  {
+    "id": 6746,
+    "name": "杨韫玉",
+    "nickName": "SNH48-杨韫玉",
+    "roomId": 67265403
+  },
+  {
+    "id": 6747,
+    "name": "张丹三",
+    "nickName": "SNH48-张丹三",
+    "roomId": 67256353
+  },
+  {
+    "id": 49003,
+    "name": "周怡",
+    "nickName": "SNH48-周怡",
+    "roomId": 67362239
+  },
+  {
+    "id": 49005,
+    "name": "沈梦瑶",
+    "nickName": "SNH48-沈梦瑶",
+    "roomId": 67265421
+  },
+  {
+    "id": 63548,
+    "name": "陈珂",
+    "nickName": "GNZ48-陈珂",
+    "roomId": 67246060
+  },
+  {
+    "id": 63549,
+    "name": "陈美君",
+    "nickName": "BEJ48-陈美君",
+    "roomId": 67236622
+  },
+  {
+    "id": 63554,
+    "name": "段艺璇",
+    "nickName": "BEJ48-段艺璇",
+    "roomId": 67333062
+  },
+  {
+    "id": 63555,
+    "name": "费沁源",
+    "nickName": "SNH48-费沁源",
+    "roomId": 67265467
+  },
+  {
+    "id": 63557,
+    "name": "高源婧",
+    "nickName": "GNZ48-高源婧",
+    "roomId": 67333069
+  },
+  {
+    "id": 63558,
+    "name": "洪珮雲",
+    "nickName": "SNH48-洪珮雲",
+    "roomId": 67313743
+  },
+  {
+    "id": 63559,
+    "name": "胡晓慧",
+    "nickName": "BEJ48-胡晓慧",
+    "roomId": 67362289
+  },
+  {
+    "id": 63560,
+    "name": "姜杉",
+    "nickName": "SNH48-姜杉",
+    "roomId": 67284424
+  },
+  {
+    "id": 63561,
+    "name": "蒋舒婷",
+    "nickName": "SNH48-蒋舒婷",
+    "roomId": 67333084
+  },
+  {
+    "id": 63562,
+    "name": "林嘉佩",
+    "nickName": "GNZ48-林嘉佩",
+    "roomId": 67284411
+  },
+  {
+    "id": 63564,
+    "name": "李沁洁",
+    "nickName": "GNZ48-李沁洁",
+    "roomId": 67199572
+  },
+  {
+    "id": 63566,
+    "name": "刘增艳",
+    "nickName": "SNH48-刘增艳",
+    "roomId": 67322491
+  },
+  {
+    "id": 63567,
+    "name": "潘瑛琪",
+    "nickName": "SNH48-潘瑛琪",
+    "roomId": 67265451
+  },
+  {
+    "id": 63570,
+    "name": "宋雨珊",
+    "nickName": "SNH48-宋雨珊",
+    "roomId": 67313782
+  },
+  {
+    "id": 63571,
+    "name": "田姝丽",
+    "nickName": "BEJ48-田姝丽",
+    "roomId": 67313745
+  },
+  {
+    "id": 63572,
+    "name": "谢蕾蕾",
+    "nickName": "GNZ48-谢蕾蕾",
+    "roomId": 67370548
+  },
+  {
+    "id": 63573,
+    "name": "熊素君",
+    "nickName": "BEJ48-熊素君",
+    "roomId": 67256348
+  },
+  {
+    "id": 63574,
+    "name": "严佼君",
+    "nickName": "SNH48-严佼君",
+    "roomId": 67303260
+  },
+  {
+    "id": 63576,
+    "name": "阳青颖",
+    "nickName": "GNZ48-阳青颖",
+    "roomId": 67352300
+  },
+  {
+    "id": 63577,
+    "name": "曾艾佳",
+    "nickName": "GNZ48-曾艾佳",
+    "roomId": 67293879
+  },
+  {
+    "id": 63582,
+    "name": "张怡",
+    "nickName": "SNH48-张怡",
+    "roomId": 67303248
+  },
+  {
+    "id": 286977,
+    "name": "孙珍妮",
+    "nickName": "SNH48-孙珍妮",
+    "roomId": 67390920
+  },
+  {
+    "id": 286979,
+    "name": "张嘉予",
+    "nickName": "SNH48-张嘉予",
+    "roomId": 67313734
+  },
+  {
+    "id": 286983,
+    "name": "李佳恩",
+    "nickName": "海外练习生-李佳恩",
+    "roomId": 67199599
+  },
+  {
+    "id": 327558,
+    "name": "罗寒月",
+    "nickName": "GNZ48-罗寒月",
+    "roomId": 67217562
+  },
+  {
+    "id": 327560,
+    "name": "张琼予",
+    "nickName": "GNZ48-张琼予",
+    "roomId": 67236638
+  },
+  {
+    "id": 327563,
+    "name": "陈楠茜",
+    "nickName": "GNZ48-陈楠茜",
+    "roomId": 67189785
+  },
+  {
+    "id": 327564,
+    "name": "陈欣妤",
+    "nickName": "GNZ48-陈欣妤",
+    "roomId": 67313746
+  },
+  {
+    "id": 327566,
+    "name": "洪静雯",
+    "nickName": "GNZ48-洪静雯",
+    "roomId": 67199579
+  },
+  {
+    "id": 327567,
+    "name": "刘力菲",
+    "nickName": "GNZ48-刘力菲",
+    "roomId": 67342026
+  },
+  {
+    "id": 327568,
+    "name": "刘倩倩",
+    "nickName": "GNZ48-刘倩倩",
+    "roomId": 67246058
+  },
+  {
+    "id": 327569,
+    "name": "卢静",
+    "nickName": "GNZ48-卢静",
+    "roomId": 67217596
+  },
+  {
+    "id": 327570,
+    "name": "孙馨",
+    "nickName": "GNZ48-孙馨",
+    "roomId": 67199557
+  },
+  {
+    "id": 327571,
+    "name": "唐莉佳",
+    "nickName": "GNZ48-唐莉佳",
+    "roomId": 67333045
+  },
+  {
+    "id": 327572,
+    "name": "冼燊楠",
+    "nickName": "GNZ48-冼燊楠",
+    "roomId": 67189767
+  },
+  {
+    "id": 327573,
+    "name": "肖文铃",
+    "nickName": "GNZ48-肖文铃",
+    "roomId": 67189786
+  },
+  {
+    "id": 327574,
+    "name": "熊心瑶",
+    "nickName": "GNZ48-熊心瑶",
+    "roomId": 67380527
+  },
+  {
+    "id": 327575,
+    "name": "郑丹妮",
+    "nickName": "GNZ48-郑丹妮",
+    "roomId": 67256340
+  },
+  {
+    "id": 327577,
+    "name": "左婧媛",
+    "nickName": "GNZ48-左婧媛",
+    "roomId": 67380556
+  },
+  {
+    "id": 327578,
+    "name": "林溪荷",
+    "nickName": "BEJ48-林溪荷",
+    "roomId": 67265415
+  },
+  {
+    "id": 327579,
+    "name": "刘姝贤",
+    "nickName": "BEJ48-刘姝贤",
+    "roomId": 67275416
+  },
+  {
+    "id": 327580,
+    "name": "张梦慧",
+    "nickName": "BEJ48-张梦慧",
+    "roomId": 67236634
+  },
+  {
+    "id": 327581,
+    "name": "青钰雯",
+    "nickName": "BEJ48-青钰雯",
+    "roomId": 67236584
+  },
+  {
+    "id": 327587,
+    "name": "冯思佳",
+    "nickName": "BEJ48-冯思佳",
+    "roomId": 67293874
+  },
+  {
+    "id": 327591,
+    "name": "李梓",
+    "nickName": "BEJ48-李梓",
+    "roomId": 67390924
+  },
+  {
+    "id": 327593,
+    "name": "李诗彦",
+    "nickName": "BEJ48-李诗彦",
+    "roomId": 67342062
+  },
+  {
+    "id": 327594,
+    "name": "李想",
+    "nickName": "BEJ48-李想",
+    "roomId": 67313825
+  },
+  {
+    "id": 327596,
+    "name": "马玉灵",
+    "nickName": "BEJ48-马玉灵",
+    "roomId": 67342074
+  },
+  {
+    "id": 327597,
+    "name": "苏杉杉",
+    "nickName": "BEJ48-苏杉杉",
+    "roomId": 67362271
+  },
+  {
+    "id": 327598,
+    "name": "张笑盈",
+    "nickName": "BEJ48-张笑盈",
+    "roomId": 67246081
+  },
+  {
+    "id": 327600,
+    "name": "顼凘炀",
+    "nickName": "BEJ48-顼凘炀",
+    "roomId": 67362296
+  },
+  {
+    "id": 327601,
+    "name": "陈倩楠",
+    "nickName": "BEJ48-陈倩楠",
+    "roomId": 67207817
+  },
+  {
+    "id": 327602,
+    "name": "刘胜男",
+    "nickName": "BEJ48-刘胜男",
+    "roomId": 67199580
+  },
+  {
+    "id": 327682,
+    "nickName": "BEJ48",
+    "roomId": 67207875
+  },
+  {
+    "id": 327683,
+    "nickName": "GNZ48",
+    "roomId": 67380600
+  },
+  {
+    "id": 399631,
+    "name": "吕一",
+    "nickName": "SNH48-吕一",
+    "roomId": 67265389
+  },
+  {
+    "id": 399654,
+    "name": "赵韩倩",
+    "nickName": "SNH48-赵韩倩",
+    "roomId": 67275445
+  },
+  {
+    "id": 399662,
+    "name": "江真仪",
+    "nickName": "SNH48-江真仪",
+    "roomId": 67342039
+  },
+  {
+    "id": 399669,
+    "name": "袁一琦",
+    "nickName": "SNH48-袁一琦",
+    "roomId": 67275447
+  },
+  {
+    "id": 399672,
+    "name": "祁静",
+    "nickName": "SNH48-祁静",
+    "roomId": 67313798
+  },
+  {
+    "id": 407101,
+    "name": "陈雅钰",
+    "nickName": "BEJ48-陈雅钰",
+    "roomId": 67313729
+  },
+  {
+    "id": 407103,
+    "name": "房蕾",
+    "nickName": "BEJ48-房蕾",
+    "roomId": 67217597
+  },
+  {
+    "id": 407104,
+    "name": "葛司琪",
+    "nickName": "BEJ48-葛司琪",
+    "roomId": 67236630
+  },
+  {
+    "id": 407106,
+    "name": "黄恩茹",
+    "nickName": "BEJ48-黄恩茹",
+    "roomId": 67333041
+  },
+  {
+    "id": 407108,
+    "name": "李泓瑶",
+    "nickName": "IDFT-李泓瑶",
+    "roomId": 67313801
+  },
+  {
+    "id": 407110,
+    "name": "刘闲",
+    "nickName": "BEJ48-刘闲",
+    "roomId": 67303252
+  },
+  {
+    "id": 407112,
+    "name": "任心怡",
+    "nickName": "BEJ48-任心怡",
+    "roomId": 67265418
+  },
+  {
+    "id": 407121,
+    "name": "孙语姗",
+    "nickName": "BEJ48-孙语姗",
+    "roomId": 67303246
+  },
+  {
+    "id": 407124,
+    "name": "叶苗苗",
+    "nickName": "BEJ48-叶苗苗",
+    "roomId": 67362248
+  },
+  {
+    "id": 407126,
+    "name": "杨晔",
+    "nickName": "BEJ48-杨晔",
+    "roomId": 67217598
+  },
+  {
+    "id": 407127,
+    "name": "张怀瑾",
+    "nickName": "BEJ48-张怀瑾",
+    "roomId": 67380550
+  },
+  {
+    "id": 407130,
+    "name": "张韩紫陌",
+    "nickName": "IDFT-张韩紫陌",
+    "roomId": 67370544
+  },
+  {
+    "id": 407135,
+    "name": "杨一帆",
+    "nickName": "BEJ48-杨一帆",
+    "roomId": 67207825
+  },
+  {
+    "id": 407168,
+    "name": "王雨煊",
+    "nickName": "BEJ48-王雨煊",
+    "roomId": 67284443
+  },
+  {
+    "id": 417311,
+    "name": "陈桂君",
+    "nickName": "GNZ48-陈桂君",
+    "roomId": 67370540
+  },
+  {
+    "id": 417320,
+    "name": "龙亦瑞",
+    "nickName": "GNZ48-龙亦瑞",
+    "roomId": 67390893
+  },
+  {
+    "id": 417321,
+    "name": "农燕萍",
+    "nickName": "GNZ48-农燕萍",
+    "roomId": 67313737
+  },
+  {
+    "id": 417324,
+    "name": "王翠菲",
+    "nickName": "GNZ48-王翠菲",
+    "roomId": 67293873
+  },
+  {
+    "id": 417325,
+    "name": "王炯义",
+    "nickName": "GNZ48-王炯义",
+    "roomId": 67199602
+  },
+  {
+    "id": 417326,
+    "name": "王偲越",
+    "nickName": "GNZ48-王偲越",
+    "roomId": 67217582
+  },
+  {
+    "id": 417329,
+    "name": "王秭歆",
+    "nickName": "GNZ48-王秭歆",
+    "roomId": 67352296
+  },
+  {
+    "id": 417330,
+    "name": "杨可璐",
+    "nickName": "GNZ48-杨可璐",
+    "roomId": 67390950
+  },
+  {
+    "id": 417331,
+    "name": "杨媛媛",
+    "nickName": "GNZ48-杨媛媛",
+    "roomId": 67342057
+  },
+  {
+    "id": 458335,
+    "name": "李慧",
+    "nickName": "IDFT-李慧",
+    "roomId": 67207862
+  },
+  {
+    "id": 459989,
+    "name": "王诗蒙",
+    "nickName": "SNH48-王诗蒙",
+    "roomId": 67275488
+  },
+  {
+    "id": 459991,
+    "name": "卢天惠",
+    "nickName": "SNH48-卢天惠",
+    "roomId": 67189812
+  },
+  {
+    "id": 459995,
+    "name": "赖梓惜",
+    "nickName": "GNZ48-赖梓惜",
+    "roomId": 67207858
+  },
+  {
+    "id": 459999,
+    "name": "韩家乐",
+    "nickName": "BEJ48-韩家乐",
+    "roomId": 67189813
+  },
+  {
+    "id": 460005,
+    "name": "赵佳蕊",
+    "nickName": "SNH48-赵佳蕊",
+    "roomId": 67275492
+  },
+  {
+    "id": 480667,
+    "name": "刘静晗",
+    "nickName": "SNH48-刘静晗",
+    "roomId": 67322504
+  },
+  {
+    "id": 480675,
+    "name": "张爱静",
+    "nickName": "BEJ48-张爱静",
+    "roomId": 67265495
+  },
+  {
+    "id": 480676,
+    "name": "郑洁丽",
+    "nickName": "BEJ48-郑洁丽",
+    "roomId": 67303277
+  },
+  {
+    "id": 528094,
+    "name": "胡丽芝",
+    "nickName": "BEJ48-胡丽芝",
+    "roomId": 67217626
+  },
+  {
+    "id": 528329,
+    "name": "孙晓艳",
+    "nickName": "BEJ48-孙晓艳",
+    "roomId": 67303279
+  },
+  {
+    "id": 528335,
+    "name": "金锣赛",
+    "nickName": "BEJ48-金锣赛",
+    "roomId": 67265498
+  },
+  {
+    "id": 528336,
+    "name": "兰昊",
+    "nickName": "IDFT-兰昊",
+    "roomId": 67207870
+  },
+  {
+    "id": 528337,
+    "name": "刘一菲",
+    "nickName": "BEJ48-刘一菲",
+    "roomId": 67275503
+  },
+  {
+    "id": 528339,
+    "name": "乔钰珂",
+    "nickName": "IDFT-乔钰珂",
+    "roomId": 67246096
+  },
+  {
+    "id": 530381,
+    "name": "臧聪",
+    "nickName": "BEJ48-臧聪",
+    "roomId": 67265508
+  },
+  {
+    "id": 530385,
+    "name": "高崇",
+    "nickName": "海外练习生-高崇",
+    "roomId": 67189830
+  },
+  {
+    "id": 530388,
+    "name": "王菲妍",
+    "nickName": "SNH48-王菲妍",
+    "roomId": 67189834
+  },
+  {
+    "id": 530392,
+    "name": "张羽涵",
+    "nickName": "BEJ48-张羽涵",
+    "roomId": 67189829
+  },
+  {
+    "id": 530431,
+    "name": "陈佳莹",
+    "nickName": "GNZ48-陈佳莹",
+    "roomId": 67303296
+  },
+  {
+    "id": 530433,
+    "name": "陈俊宏",
+    "nickName": "GNZ48-陈俊宏",
+    "roomId": 67380603
+  },
+  {
+    "id": 530440,
+    "name": "赖俊亦",
+    "nickName": "IDFT-赖俊亦",
+    "roomId": 67313885
+  },
+  {
+    "id": 530447,
+    "name": "谢艾琳",
+    "nickName": "GNZ48-谢艾琳",
+    "roomId": 67303290
+  },
+  {
+    "id": 530450,
+    "name": "张秋怡",
+    "nickName": "GNZ48-张秋怡",
+    "roomId": 67333145
+  },
+  {
+    "id": 530452,
+    "name": "朱怡欣",
+    "nickName": "GNZ48-朱怡欣",
+    "roomId": 67265514
+  },
+  {
+    "id": 538697,
+    "name": "沈小爱",
+    "nickName": "BEJ48-沈小爱",
+    "roomId": 67293956
+  },
+  {
+    "id": 538735,
+    "name": "金莹玥",
+    "nickName": "SNH48-金莹玥",
+    "roomId": 67370575
+  },
+  {
+    "id": 594003,
+    "name": "王奕",
+    "nickName": "SNH48-王奕",
+    "roomId": 67380608
+  },
+  {
+    "id": 594005,
+    "name": "熊沁娴",
+    "nickName": "IDFT-熊沁娴",
+    "roomId": 67236666
+  },
+  {
+    "id": 601302,
+    "name": "梁婉琳",
+    "nickName": "GNZ48-梁婉琳",
+    "roomId": 67199629
+  },
+  {
+    "id": 606343,
+    "name": "马凡",
+    "nickName": "SNH48-马凡",
+    "roomId": 67189842
+  },
+  {
+    "id": 607507,
+    "name": "毕瑞珊",
+    "nickName": "GNZ48-毕瑞珊",
+    "roomId": 67313899
+  },
+  {
+    "id": 607511,
+    "name": "邓惠恩",
+    "nickName": "GNZ48-邓惠恩",
+    "roomId": 67333149
+  },
+  {
+    "id": 607513,
+    "name": "符冰冰",
+    "nickName": "GNZ48-符冰冰",
+    "roomId": 67313897
+  },
+  {
+    "id": 607515,
+    "name": "黄楚茵",
+    "nickName": "GNZ48-黄楚茵",
+    "roomId": 67390990
+  },
+  {
+    "id": 607521,
+    "name": "罗可嘉",
+    "nickName": "GNZ48-罗可嘉",
+    "roomId": 67370588
+  },
+  {
+    "id": 607523,
+    "name": "林芝",
+    "nickName": "GNZ48-林芝",
+    "roomId": 67236669
+  },
+  {
+    "id": 607591,
+    "name": "吴羽霏",
+    "nickName": "GNZ48-吴羽霏",
+    "roomId": 67352339
+  },
+  {
+    "id": 607594,
+    "name": "余芷媛",
+    "nickName": "GNZ48-余芷媛",
+    "roomId": 67313896
+  },
+  {
+    "id": 608997,
+    "name": "司珀琳",
+    "nickName": "IDFT-司珀琳",
+    "roomId": 67313912
+  },
+  {
+    "id": 609002,
+    "name": "赵天杨",
+    "nickName": "BEJ48-赵天杨",
+    "roomId": 67342150
+  },
+  {
+    "id": 610042,
+    "name": "唐霖",
+    "nickName": "BEJ48-唐霖",
+    "roomId": 67293973
+  },
+  {
+    "id": 614528,
+    "name": "柏欣妤",
+    "nickName": "BEJ48-柏欣妤",
+    "roomId": 67275528
+  },
+  {
+    "id": 614727,
+    "name": "李姗姗",
+    "nickName": "GNZ48-李姗姗",
+    "roomId": 67362351
+  },
+  {
+    "id": 614728,
+    "name": "雷宇霄",
+    "nickName": "IDFT-雷宇霄",
+    "roomId": 67390996
+  },
+  {
+    "id": 614730,
+    "name": "孟玥",
+    "nickName": "IDFT-孟玥",
+    "roomId": 67189857
+  },
+  {
+    "id": 614731,
+    "name": "毛译晗",
+    "nickName": "IDFT-毛译晗",
+    "roomId": 67333166
+  },
+  {
+    "id": 614733,
+    "name": "谯玉珍",
+    "nickName": "IDFT-谯玉珍",
+    "roomId": 67246114
+  },
+  {
+    "id": 614734,
+    "name": "冉蔚",
+    "nickName": "SNH48-冉蔚",
+    "roomId": 67333162
+  },
+  {
+    "id": 614735,
+    "name": "田倩兰",
+    "nickName": "IDFT-田倩兰",
+    "roomId": 67342133
+  },
+  {
+    "id": 614739,
+    "name": "王梦竹",
+    "nickName": "IDFT-王梦竹",
+    "roomId": 67342135
+  },
+  {
+    "id": 614741,
+    "name": "曾佳",
+    "nickName": "IDFT-曾佳",
+    "roomId": 67380616
+  },
+  {
+    "id": 614742,
+    "name": "左欣",
+    "nickName": "IDFT-左欣",
+    "roomId": 67236674
+  },
+  {
+    "id": 614750,
+    "name": "邓倩",
+    "nickName": "IDFT-邓倩",
+    "roomId": 67390997
+  },
+  {
+    "id": 614753,
+    "name": "郝婧怡",
+    "nickName": "SNH48-郝婧怡",
+    "roomId": 67236680
+  },
+  {
+    "id": 614755,
+    "name": "黄琬璎",
+    "nickName": "IDFT-黄琬璎",
+    "roomId": 67303313
+  },
+  {
+    "id": 614756,
+    "name": "林舒晴",
+    "nickName": "SNH48-林舒晴",
+    "roomId": 67256384
+  },
+  {
+    "id": 614761,
+    "name": "吴学雨",
+    "nickName": "IDFT-吴学雨",
+    "roomId": 67199643
+  },
+  {
+    "id": 618319,
+    "name": "程戈",
+    "nickName": "BEJ48-程戈",
+    "roomId": 67284477
+  },
+  {
+    "id": 623828,
+    "name": "李娜",
+    "nickName": "BEJ48-李娜",
+    "roomId": 67275536
+  },
+  {
+    "id": 624121,
+    "name": "何阳青青",
+    "nickName": "BEJ48-何阳青青",
+    "roomId": 67390999
+  },
+  {
+    "id": 624314,
+    "name": "徐佳音",
+    "nickName": "海外练习生-徐佳音",
+    "roomId": 67275542
+  },
+  {
+    "id": 652650,
+    "name": "杨鑫",
+    "nickName": "BEJ48-杨鑫",
+    "roomId": 67342151
+  },
+  {
+    "id": 677395,
+    "name": "陈盼",
+    "nickName": "SNH48-陈盼",
+    "roomId": 67391008
+  },
+  {
+    "id": 677396,
+    "name": "李美琪",
+    "nickName": "SNH48-李美琪",
+    "roomId": 67370608
+  },
+  {
+    "id": 677397,
+    "name": "李星羽",
+    "nickName": "SNH48-李星羽",
+    "roomId": 67199656
+  },
+  {
+    "id": 677398,
+    "name": "李玉倩",
+    "nickName": "SNH48-李玉倩",
+    "roomId": 67189874
+  },
+  {
+    "id": 677400,
+    "name": "王欣颜甜甜",
+    "nickName": "SNH48-王欣颜甜甜",
+    "roomId": 67284484
+  },
+  {
+    "id": 677401,
+    "name": "杨令仪",
+    "nickName": "SNH48-杨令仪",
+    "roomId": 67342164
+  },
+  {
+    "id": 677403,
+    "name": "张茜",
+    "nickName": "SNH48-张茜",
+    "roomId": 67370606
+  },
+  {
+    "id": 677404,
+    "name": "周诗雨",
+    "nickName": "SNH48-周诗雨",
+    "roomId": 67275553
+  },
+  {
+    "id": 677405,
+    "name": "朱小丹",
+    "nickName": "SNH48-朱小丹",
+    "roomId": 67284483
+  },
+  {
+    "id": 679448,
+    "name": "陈俊羽",
+    "nickName": "SNH48-陈俊羽",
+    "roomId": 67293986
+  },
+  {
+    "id": 679462,
+    "name": "李苏洪",
+    "nickName": "IDFT-李苏洪",
+    "roomId": 67303319
+  },
+  {
+    "id": 679464,
+    "name": "王嘉瑜",
+    "nickName": "BEJ48-王嘉瑜",
+    "roomId": 67275543
+  },
+  {
+    "id": 679466,
+    "name": "王雨兰",
+    "nickName": "BEJ48-王雨兰",
+    "roomId": 67265535
+  },
+  {
+    "id": 707365,
+    "name": "戴紫薇",
+    "nickName": "IDFT-戴紫薇",
+    "roomId": 67380647
+  },
+  {
+    "id": 707369,
+    "name": "魏小燕",
+    "nickName": "IDFT-魏小燕",
+    "roomId": 67391014
+  },
+  {
+    "id": 707371,
+    "name": "徐楚雯",
+    "nickName": "GNZ48-徐楚雯",
+    "roomId": 67265540
+  },
+  {
+    "id": 707372,
+    "name": "徐慧玲",
+    "nickName": "GNZ48-徐慧玲",
+    "roomId": 67352359
+  },
+  {
+    "id": 711726,
+    "name": "高蔚然",
+    "nickName": "BEJ48-高蔚然",
+    "roomId": 67189871
+  },
+  {
+    "id": 711732,
+    "name": "彭嘉敏",
+    "nickName": "BEJ48-彭嘉敏",
+    "roomId": 67207923
+  },
+  {
+    "id": 711735,
+    "name": "曲美霖",
+    "nickName": "BEJ48-曲美霖",
+    "roomId": 67275548
+  },
+  {
+    "id": 711739,
+    "name": "熊鑫",
+    "nickName": "BEJ48-熊鑫",
+    "roomId": 67293987
+  },
+  {
+    "id": 711745,
+    "name": "张丹丹",
+    "nickName": "BEJ48-张丹丹",
+    "roomId": 67275549
+  },
+  {
+    "id": 711746,
+    "name": "周湘",
+    "nickName": "BEJ48-周湘",
+    "roomId": 67207922
+  },
+  {
+    "id": 722778,
+    "name": "郭铱宁",
+    "nickName": "GNZ48-郭铱宁",
+    "roomId": 67265541
+  },
+  {
+    "id": 722780,
+    "name": "梁娇",
+    "nickName": "GNZ48-梁娇",
+    "roomId": 67284489
+  },
+  {
+    "id": 722781,
+    "name": "梁乔",
+    "nickName": "GNZ48-梁乔",
+    "roomId": 67342180
+  },
+  {
+    "id": 722784,
+    "name": "谢菲菲",
+    "nickName": "GNZ48-谢菲菲",
+    "roomId": 67352360
+  },
+  {
+    "id": 820988,
+    "name": "戚予珠",
+    "nickName": "SNH48-戚予珠",
+    "roomId": 67313934
+  },
+  {
+    "id": 825969,
+    "name": "程宇璐",
+    "nickName": "BEJ48-程宇璐",
+    "roomId": 67303325
+  },
+  {
+    "id": 831078,
+    "name": "任蔓琳",
+    "nickName": "BEJ48-任蔓琳",
+    "roomId": 67275559
+  },
+  {
+    "id": 867888,
+    "name": "曹露丹",
+    "nickName": "IDFT-曹露丹",
+    "roomId": 67256412
+  },
+  {
+    "id": 867891,
+    "name": "方琪",
+    "nickName": "GNZ48-方琪",
+    "roomId": 67322562
+  },
+  {
+    "id": 867892,
+    "name": "郭爽",
+    "nickName": "SNH48-郭爽",
+    "roomId": 67275562
+  },
+  {
+    "id": 867895,
+    "name": "彭榆涵",
+    "nickName": "IDFT-彭榆涵",
+    "roomId": 67236697
+  },
+  {
+    "id": 867896,
+    "name": "田密",
+    "nickName": "IDFT-田密",
+    "roomId": 67189884
+  },
+  {
+    "id": 867899,
+    "name": "赵思雨",
+    "nickName": "IDFT-赵思雨",
+    "roomId": 67352374
+  },
+  {
+    "id": 868349,
+    "name": "栾嘉仪",
+    "nickName": "SNH48-栾嘉仪",
+    "roomId": 67352368
+  },
+  {
+    "id": 868351,
+    "name": "周睿林",
+    "nickName": "海外练习生-周睿林",
+    "roomId": 67380657
+  },
+  {
+    "id": 868352,
+    "name": "刘洁",
+    "nickName": "SNH48-刘洁",
+    "roomId": 67284493
+  },
+  {
+    "id": 869171,
+    "name": "鲁静萍",
+    "nickName": "SNH48-鲁静萍",
+    "roomId": 67199663
+  },
+  {
+    "id": 874497,
+    "name": "卞佳宁",
+    "nickName": "IDFT-卞佳宁",
+    "roomId": 67342194
+  },
+  {
+    "id": 874500,
+    "name": "冯嘉宝",
+    "nickName": "IDFT-冯嘉宝",
+    "roomId": 67284494
+  },
+  {
+    "id": 874505,
+    "name": "刘宇晴",
+    "nickName": "IDFT-刘宇晴",
+    "roomId": 67352370
+  },
+  {
+    "id": 874508,
+    "name": "尚官",
+    "nickName": "IDFT-尚官",
+    "roomId": 67207933
+  },
+  {
+    "id": 874693,
+    "name": "邓熳慧",
+    "nickName": "GNZ48-邓熳慧",
+    "roomId": 67362378
+  },
+  {
+    "id": 874696,
+    "name": "叶舒淇",
+    "nickName": "GNZ48-叶舒淇",
+    "roomId": 67380660
+  },
+  {
+    "id": 874698,
+    "name": "鄢羽蝶",
+    "nickName": "IDFT-鄢羽蝶",
+    "roomId": 67265546
+  },
+  {
+    "id": 874701,
+    "name": "张润",
+    "nickName": "GNZ48-张润",
+    "roomId": 67391027
+  },
+  {
+    "id": 874717,
+    "name": "武晓迪",
+    "nickName": "IDFT-武晓迪",
+    "roomId": 67352372
+  },
+  {
+    "id": 874723,
+    "name": "王梓",
+    "nickName": "IDFT-王梓",
+    "roomId": 67391028
+  },
+  {
+    "id": 881190,
+    "name": "颜沁",
+    "nickName": "SNH48-颜沁",
+    "roomId": 67256413
+  }
+]

@@ -1,4 +1,4 @@
-package top.yzlin.koudai48;
+package top.yzlin.koudai49;
 
 import top.yzlin.cqrobotsdk.CQRobot;
 import top.yzlin.cqrobotsdk.HttpAPI;

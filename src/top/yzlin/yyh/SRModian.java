@@ -14,7 +14,7 @@ public class SRModian extends ModianMonitoring {
         cqRobot.addMsgSolution(new PersonMsgReply() {
             @Override
             public boolean fromQQ(String from) {
-                return "472910740".equals(from) || "499680328".equals(from);
+                return "972804566".equals(from) || "499680328".equals(from);
             }
 
             @Override

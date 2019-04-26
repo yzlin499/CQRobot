@@ -1,0 +1,33 @@
+# For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection).
+#
+# Following HTTP Request Live Templates are available:
+# * 'gtrp' and 'gtr' create a GET request with or without query parameters;
+# * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
+# * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
+
+POST https://pocketapi.48.cn/user/api/v1/login/app/mobile
+Content-Type: application/json;charset=UTF-8
+User-Agent: PocketFans201807/6.0.0 (iPhone; iOS 12.2; Scale/2.00)
+appInfo: {"vendor": "apple", "deviceId": "DD6AA6A9-E3FE-445B-9C5B-DBB70917A123", "appVersion": "6.0.0", "appBuild": "190409", "osVersion": "12.2.0", "osType": "ios", "deviceName": "iphone", "os": "ios"}
+
+{
+  "mobile": "13546860076",
+  "pwd": "q1w2e3r4"
+}
+
+###
+
+POST https://pocketapi.48.cn/im/api/v1/chatroom/msg/list/homeowner
+Content-Type: application/json;charset=UTF-8
+User-Agent: PocketFans201807/6.0.0 (iPhone; iOS 12.2; Scale/2.00)
+appInfo: {"vendor": "apple", "deviceId": "DD6AA6A9-E3FE-445B-9C5B-DBB70917A123", "appVersion": "6.0.0", "appBuild": "190409", "osVersion": "12.2.0", "osType": "ios", "deviceName": "iphone", "os": "ios"}
+token: 1PkjsgvPv12pbInKrn5BfvzcqRF/jceD0RBDiFG9zMV2xWaoKgZInvsTL7FrMmGcDCCPJMX+wxoPANkOKIdKvZHj50DQvTS35rncyZcgc0vo+yP9KIerUpJdLTiPHmWo
+
+{
+  "needTop1Msg": false,
+  "nextTime": 1556206994000,
+  "roomId": 67313734,
+  "ownerId": 286979
+}
+
+###

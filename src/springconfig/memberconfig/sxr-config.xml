@@ -6,16 +6,16 @@
 
     <bean id="cqSXR" class="top.yzlin.cqrobotsdk.HttpAPI" c:port="${SXR.port}"/>
 
-    <bean id="sxrKD" class="top.yzlin.yyh.SXRKDRoom"
-          c:groupID="${SXR.groupID}"
-          c:cqRobot-ref="cqSXR"
-          p:CQPath="HttpApi">
-        <constructor-arg name="kdRoom">
-            <bean class="top.yzlin.koudai48.KDRoom"
-                  c:memberName="宋昕冉"
-                  c:kdValidation-ref="kdValidation"/>
-        </constructor-arg>
-    </bean>
+    <!--<bean id="sxrKD" class="top.yzlin.yyh.SXRKDRoom"-->
+    <!--c:groupID="${SXR.groupID}"-->
+    <!--c:cqRobot-ref="cqSXR"-->
+    <!--p:CQPath="HttpApi">-->
+    <!--<constructor-arg name="kdRoom">-->
+    <!--<bean class="top.yzlin.koudai48.KDRoom"-->
+    <!--c:memberName="宋昕冉"-->
+    <!--c:kdValidation-ref="kdValidation"/>-->
+    <!--</constructor-arg>-->
+    <!--</bean>-->
 
     <bean class="top.yzlin.cqrobotsdk.keywordfunc.KeyWord"
           c:groupID="${SXR.groupID}"

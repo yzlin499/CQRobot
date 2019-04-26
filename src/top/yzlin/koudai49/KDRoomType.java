@@ -1,4 +1,4 @@
-package top.yzlin.koudai48;
+package top.yzlin.koudai49;
 
 import java.util.EnumSet;
 import java.util.Map;
@@ -9,14 +9,15 @@ public enum KDRoomType {
     /**
      * 取消代码规范警告
      */
-    TEXT("text", "消息"),
-    FAIPAI_TEXT("faipaiText", "翻牌"),
-    LIVE("live", "直播"),
-    DIANTAI("diantai", "电台"),
-    IMAGE("image", "图片"),
-    AUDIO("audio", "音频"),
-    IDOLFLIP("idolFlip", "付费翻牌"),
-    VIDEO_RECORD("videoRecord", "视频");
+    TEXT("TEXT", "消息"),
+    REPLY("REPLY", "回复"),
+    FLIP_CARD("FLIPCARD", "翻牌"),
+    IMAGE("IMAGE", "图片"),
+    AUDIO("AUDIO", "音频"),
+    VIDEO("VIDEO", "视频"),
+    LIVE_PUSH("LIVEPUSH", "直播"),
+    VOTE("VOTE", "投票"),
+    EXPRESS("EXPRESS", "表情");
 
     private String name;
     private String cnName;

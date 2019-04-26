@@ -1,4 +1,4 @@
-package top.yzlin.koudai48;
+package top.yzlin.koudai49;
 
 import com.alibaba.fastjson.JSONObject;
 import top.yzlin.tools.Tools;
@@ -7,9 +7,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.*;
+import java.util.Properties;
+import java.util.Scanner;
 
 public class KDValidation {
+    private static final String VALIDATION_API = "https://pocketapi.48.cn/user/api/v1/login/app/mobile";
+
     /*创建文档*/
     static {
         File tf = new File("doc\\KDRoomConfiguration");
@@ -21,8 +24,6 @@ public class KDValidation {
     private String account;
     private String userID;
     private String token;
-
-
 
     public KDValidation(String account) {
         this.account = account;
@@ -101,12 +102,9 @@ public class KDValidation {
     private String getNewToken(String account, String password) {
         Tools.print("获取新token");
         JSONObject result = JSONObject.parseObject(Tools.sendPost(
-                "https://puser.48.cn/usersystem/api/user/v1/login/phone",
-                "{\"latitude\":0,\"longitude\":0,\"password\":\"" + password + "\",\"account\":\"" + account + "\"}",
-                conn -> {
-                    conn.setRequestProperty("IMEI", "861962030" + (new Random().nextInt(899999) + 100000));
-                    conn.setRequestProperty("Content-Type", "application/json");
-                }
+                KD49API.VALIDATION_API,
+                new JSONObject().fluentPut("mobile", account).fluentPut("pwd", password).toString(),
+                KD49API.API_HEADER
         ));
         if (result == null) {
             return null;

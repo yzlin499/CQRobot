@@ -1,4 +1,4 @@
-package top.yzlin.koudai48;
+package top.yzlin.koudai49;
 
 /**
  * 自定义信息发送方式

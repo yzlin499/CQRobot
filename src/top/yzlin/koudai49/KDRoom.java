@@ -1,56 +1,58 @@
-package top.yzlin.koudai48;
+package top.yzlin.koudai49;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import top.yzlin.monitoring.BaseData;
 import top.yzlin.tools.SetConnection;
 import top.yzlin.tools.Tools;
 
-import java.io.File;
 import java.util.EnumSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.function.Predicate;
 
 public class KDRoom implements BaseData<KDRoomInfo> {
-    /*创建文档*/
-    static {
-        File tf = new File("doc\\KDRoomConfiguration");
-        if (!tf.exists()) {
-            tf.mkdirs();
-        }
-    }
-
-    private String roomID;
+    private String requestParm;
+    private MemberInfo memberInfo;
     private KDValidation kdValidation;
     private Set<KDRoomType> msgTypeSet = EnumSet.allOf(KDRoomType.class);
-    private String token;
-    private SetConnection conn = connection -> {
-        connection.setRequestProperty("token", token);
-        connection.setRequestProperty("Content-Type", "application/json");
-        connection.setRequestProperty("version", "5.0.1");
-        connection.setRequestProperty("build", "52127");
-        connection.setRequestProperty("os", "android");
-    };
+    private SetConnection conn;
 
     /**
      * 实例化一个对象
      *
      * @param account    口袋48账号
-     * @param memberName 成员名字
+     * @param member 成员名字
      */
-    public KDRoom(String account, String memberName) {
-        this(new KDValidation(account),memberName);
+    public KDRoom(String account, String member) {
+        this(new KDValidation(account), member);
     }
 
-    public KDRoom(KDValidation kdValidation, String memberName) {
-        if ((roomID = getRoomID(memberName)) == null) {
-            Tools.print("房间获取失败，程序直接结束");
-            return;
-        }
+    public KDRoom(KDValidation kdValidation, String member) {
         this.kdValidation=kdValidation;
-        token = kdValidation.getToken();
+        if (member.contains("-")) {
+            memberInfo = KD49Data.getInstance().getMemberInfoByNickName(member);
+        } else {
+            memberInfo = KD49Data.getInstance().getMemberInfoByName(member);
+            if (memberInfo == null) {
+                try {
+                    memberInfo = KD49Data.getInstance().getMemberInfoById(Integer.parseInt(member));
+                    if (memberInfo == null) {
+                        memberInfo = KD49Data.getInstance().getMemberInfoByRoomId(Integer.parseInt(member));
+                    }
+                } catch (NumberFormatException ignored) {
+                    Tools.print("无法初始化房间数据");
+                    return;
+                }
+            }
+        }
+        conn = KD49API.getTokenApiHeader(kdValidation.getToken());
+        requestParm = new JSONObject()
+                .fluentPut("needTop1Msg", false)
+                .fluentPut("nextTime", System.currentTimeMillis())
+                .fluentPut("roomId", memberInfo.getRoomId())
+                .fluentPut("ownerId", memberInfo.getId())
+                .toString();
     }
 
     public void setFunction(KDRoomType kdRoomType,boolean status){
@@ -74,7 +76,7 @@ public class KDRoom implements BaseData<KDRoomInfo> {
     }
 
     public void setLiveOpen(boolean status){
-        setFunction(KDRoomType.LIVE,status);
+        setFunction(KDRoomType.LIVE_PUSH, status);
     }
 
     public void setImageOpen(boolean status){
@@ -82,19 +84,15 @@ public class KDRoom implements BaseData<KDRoomInfo> {
     }
 
     public void setIdolFlipOpen(boolean status){
-        setFunction(KDRoomType.IDOLFLIP,status);
+        setFunction(KDRoomType.FLIP_CARD, status);
     }
 
-    public void setFaiPaiOpen(boolean status){
-        setFunction(KDRoomType.FAIPAI_TEXT,status);
+    public void setReplyOpen(boolean status) {
+        setFunction(KDRoomType.REPLY, status);
     }
 
     public void setAudioOpen(boolean status){
         setFunction(KDRoomType.AUDIO,status);
-    }
-
-    public void setDianTaiOpen(boolean status){
-        setFunction(KDRoomType.DIANTAI,status);
     }
 
     /**
@@ -104,35 +102,35 @@ public class KDRoom implements BaseData<KDRoomInfo> {
      * @return RoomInfo数组
      */
     public KDRoomInfo[] getData(long time) {
-        return getData(data -> data.getMsgTime() > time);
+        return makeData(j -> j.getLongValue("msgTime") > time, data -> true);
     }
 
     @Override
     public KDRoomInfo[] getData(Predicate<KDRoomInfo> predicate) {
-        JSONObject result = JSONObject.parseObject(Tools.sendPost(
-                "https://pjuju.48.cn/imsystem/api/im/v1/member/room/message/mainpage",
-                "{\"roomId\":\"" + roomID + "\",\"chatType\":\"0\",\"lastTime\":\"0\",\"limit\":\"10\"}",
-                conn));
-        if (result.getIntValue("status") == 401) {
+        return makeData(j -> true, predicate);
+    }
+
+    public KDRoomInfo[] makeData(Predicate<JSONObject> before, Predicate<KDRoomInfo> predicate) {
+        JSONObject result = JSONObject.parseObject(Tools.sendPost(KD49API.KD_ROOM, requestParm, conn));
+        if (result.getIntValue("status") > 400000) {
             Tools.print(result.getString("message"));
-            token = kdValidation.getNewToken();
-            return getData(predicate);
+            conn = KD49API.getTokenApiHeader(kdValidation.getNewToken());
+            return makeData(before, predicate);
         } else if (result.getIntValue("status") != 200) {
             Tools.print(result.getString("message"));
             return new KDRoomInfo[0];
         }
-        return result.getJSONObject("content").getJSONArray("data").toJavaList(JSONObject.class)
+        return result.getJSONObject("content").getJSONArray("message").toJavaList(JSONObject.class)
                 .stream()
+                .filter(before)
                 .map(data -> {
                     try {
-                        JSONObject extInfo = JSONObject.parseObject(data.getString("extInfo"));
                         KDRoomInfo temp = new KDRoomInfo();
-                        KDRoomType type = KDRoomType.parse(extInfo.getString("messageObject"));
+                        JSONObject extInfo = JSONObject.parseObject(data.getString("extInfo"));
+                        KDRoomType type = KDRoomType.parse(extInfo.getString("messageType"));
                         temp.setMsgType(type);
                         if (type == null) {
-                            if (!"juju".equals(extInfo.getString("source"))) {
-                                Tools.print("未知数据:" + extInfo);
-                            }
+                            Tools.print("未知数据类型，类型无法解析:" + extInfo);
                             return null;
                         } else if (!msgTypeSet.contains(type)) {
                             return null;
@@ -143,18 +141,16 @@ public class KDRoom implements BaseData<KDRoomInfo> {
                             case TEXT:
                                 temp.setMsg(extInfo.getString("text"));
                                 break;
-                            case FAIPAI_TEXT:
+                            case REPLY:
                                 temp.setText(extInfo.getString("faipaiContent"));
                                 temp.setMsg(extInfo.getString("messageText"));
                                 break;
-                            case LIVE:
-                            case DIANTAI:
+                            case LIVE_PUSH:
                                 temp.setMsg("https://h5.48.cn/2017appshare/memberLiveShare/index.html?id=" +
                                         extInfo.getString("referenceObjectId"));
                                 temp.setText(extInfo.getString("referenceContent"));
                                 break;
                             case AUDIO:
-                            case VIDEO_RECORD:
                             case IMAGE:
                                 try {
                                     temp.setMsg(JSONObject.parseObject(
@@ -166,7 +162,7 @@ public class KDRoom implements BaseData<KDRoomInfo> {
                                             .getString("url"));
                                 }
                                 break;
-                            case IDOLFLIP:
+                            case FLIP_CARD:
                                 temp.setMsg(extInfo.getString("idolFlipContent"));
                                 temp.setText(extInfo.getString("idolFlipTitle"));
                                 break;
@@ -183,35 +179,5 @@ public class KDRoom implements BaseData<KDRoomInfo> {
                 .toArray(KDRoomInfo[]::new);
     }
 
-    /**
-     * 获取成员的房间ID
-     *
-     * @param memberName 成员姓名
-     * @return 返回成员ID
-     */
-    private String getRoomID(String memberName) {
-        JSONObject result = JSONObject.parseObject(Tools.sendPost(
-                "https://pjuju.48.cn/imsystem/api/im/v1/search",
-                "{\"roomName\":\"" + memberName + "\"}",
-                conn
-        ));
-        if (!"200".equals(result.getString("status"))) {
-            Tools.print("获取房间ID失败，炸了，散了吧");
-            return null;
-        }
-        JSONArray aData = result.getJSONObject("content").getJSONArray("data");
-        if (aData.size() <= 0) {
-            Tools.print("搜不到这个人啊");
-            return null;
-        }
-        for (int i = aData.size() - 1; i >= 0; i--) {
-            result = aData.getJSONObject(i);
-            if (0 == result.getIntValue("roomType")) {
-                Tools.print("成员房间名：" + result.getString("roomName") + ":[" + result.getString("roomId") + ']');
-                return result.getString("roomId");
-            }
-        }
-        Tools.print("查到消息但是查不到成员");
-        return null;
-    }
+
 }

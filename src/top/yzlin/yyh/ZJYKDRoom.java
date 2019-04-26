@@ -1,10 +1,10 @@
 package top.yzlin.yyh;
 
 import top.yzlin.cqrobotsdk.CQRobot;
-import top.yzlin.koudai48.KDRoom;
-import top.yzlin.koudai48.KDRoomInfo;
-import top.yzlin.koudai48.KDRoomMonitoring;
-import top.yzlin.koudai48.KDValidation;
+import top.yzlin.koudai49.KDRoom;
+import top.yzlin.koudai49.KDRoomInfo;
+import top.yzlin.koudai49.KDRoomMonitoring;
+import top.yzlin.koudai49.KDValidation;
 
 public class ZJYKDRoom extends KDRoomMonitoring {
     public ZJYKDRoom(KDValidation kdValidation, String memberName, String groupID, CQRobot cqRobot) {
