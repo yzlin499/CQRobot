@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:c="http://www.springframework.org/schema/c" xmlns="http://www.springframework.org/schema/beans"
-       xmlns:p="http://www.springframework.org/schema/p" xmlns:uint="http://www.springframework.org/schema/util"
+       xmlns:uint="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
     <bean id="cqSXR" class="top.yzlin.cqrobotsdk.HttpAPI" c:port="${SXR.port}"/>
-
-    <!--<bean id="sxrKD" class="top.yzlin.yyh.SXRKDRoom"-->
-    <!--c:groupID="${SXR.groupID}"-->
-    <!--c:cqRobot-ref="cqSXR"-->
-    <!--p:CQPath="HttpApi">-->
-    <!--<constructor-arg name="kdRoom">-->
-    <!--<bean class="top.yzlin.koudai48.KDRoom"-->
-    <!--c:memberName="宋昕冉"-->
-    <!--c:kdValidation-ref="kdValidation"/>-->
-    <!--</constructor-arg>-->
-    <!--</bean>-->
 
     <bean class="top.yzlin.cqrobotsdk.keywordfunc.KeyWord"
           c:groupID="${SXR.groupID}"
@@ -33,16 +22,16 @@
           c:groupID="${SXR.groupID}"
           c:cqRobot-ref="cqSXR"/>
 
-    <bean id="sxrWeiBo" class="top.yzlin.weibo.WeiBoMonitoring"
-          c:cqRobot-ref="cqSXR"
-          c:groupID="${SXR.groupID}"
-          p:sendImg="true">
-        <constructor-arg name="weiBo">
-            <bean class="top.yzlin.weibo.WeiBo"
-                  c:name="宋昕冉"
-                  c:uid="5479678683"/>
-        </constructor-arg>
-    </bean>
+    <!--    <bean id="sxrWeiBo" class="top.yzlin.weibo.WeiBoMonitoring"-->
+    <!--          c:cqRobot-ref="cqSXR"-->
+    <!--          c:groupID="${SXR.groupID}"-->
+    <!--          p:sendImg="true">-->
+    <!--        <constructor-arg name="weiBo">-->
+    <!--            <bean class="top.yzlin.weibo.WeiBo"-->
+    <!--                  c:name="宋昕冉"-->
+    <!--                  c:uid="5479678683"/>-->
+    <!--        </constructor-arg>-->
+    <!--    </bean>-->
 
 
     <!--黑名单组件-->

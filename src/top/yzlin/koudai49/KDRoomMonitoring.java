@@ -103,14 +103,13 @@ public class KDRoomMonitoring extends Monitoring<KDRoomInfo> {
                 return kdRoomInfo.getSender() + "发了一张图片:\n" + kdRoomInfo.getMsg();
             case AUDIO:
                 return kdRoomInfo.getSender() + "发了一段音频:\n" + kdRoomInfo.getMsg();
-            case FAIPAI_TEXT:
+            case REPLY:
+            case FLIP_CARD:
                 return kdRoomInfo.getSender() + ':' + kdRoomInfo.getMsg() + "\n被翻牌:" + kdRoomInfo.getText();
-            case IDOLFLIP:
-                return kdRoomInfo.getSender() + "翻牌了问题:" + kdRoomInfo.getMsg() + "进入口袋48查看回答";
-            case LIVE:
+            case LIVE_PUSH:
                 return kdRoomInfo.getSender() + "开直播啦";
-            case DIANTAI:
-                return kdRoomInfo.getSender() + "开电台啦";
+            case VIDEO:
+                return kdRoomInfo.getSender() + "发了一段视频:\n" + kdRoomInfo.getMsg();
             default:
                 return "来自口袋的:" + kdRoomInfo.getMsg();
         }
@@ -145,11 +144,8 @@ public class KDRoomMonitoring extends Monitoring<KDRoomInfo> {
             case AUDIO:
                 data.setMsg(saveAudio(data.getMsg()));
                 break;
-            case VIDEO_RECORD:
-                data.setMsg(Tools.getTinyURL(data.getMsg()));
-                break;
-            case LIVE:
-            case DIANTAI:
+            case VIDEO:
+            case LIVE_PUSH:
                 data.setMsg(Tools.getTinyURL(data.getMsg()));
                 break;
             default:

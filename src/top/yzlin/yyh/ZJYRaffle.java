@@ -33,6 +33,9 @@ public class ZJYRaffle extends RaffleRaise {
 
     @Override
     public String sendText(String name, double money) {
+        if (money < minLimit + 0.001) {
+            return "";
+        }
         StringBuilder str = new StringBuilder().append('\n').append(upText).append('\n');
         StringBuilder log = new StringBuilder();
         Map<RafflePrize, Integer> rafflePrizeIntegerMap = new HashMap<>();

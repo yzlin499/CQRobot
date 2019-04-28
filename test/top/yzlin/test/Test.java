@@ -1,15 +1,12 @@
 package top.yzlin.test;
 
-import top.yzlin.koudai49.KD49Data;
+import com.alibaba.fastjson.JSON;
+import top.yzlin.koudai49.KDRoom;
 
 public class Test {
     public static void main(String[] args) {
-
-
-        System.out.println(KD49Data.getInstance().getMemberInfoById(6700));
-        System.out.println(KD49Data.getInstance().getMemberInfoById(6720));
-        System.out.println(KD49Data.getInstance().getMemberInfoById(6740));
-        System.out.println(KD49Data.getInstance().getMemberInfoById(6769));
+        KDRoom kdRoom = new KDRoom("13546860076", "");
+        System.out.println(JSON.toJSON(kdRoom.getData(1556463042299L)));
 
     }
 }

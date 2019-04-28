@@ -10,17 +10,17 @@
 
     <context:property-placeholder location="classpath:springconfig/main.properties"/>
 
-    <!--<bean name="kdValidation" class="top.yzlin.koudai48.KDValidation"-->
-    <!--c:account="${account}"/>-->
+    <bean name="kdValidation" class="top.yzlin.koudai49.KDValidation"
+          c:account="${account}"/>
 
 
 
     <!--线程区-->
     <unit:list id="threadList" value-type="java.lang.Thread">
         <!--<bean class="java.lang.Thread" c:target-ref="autoSign" p:name="Thread-autoSign"/>-->
-        <!--<bean class="java.lang.Thread" c:target-ref="kdRoomPool" p:name="Thread-kdRoomPool"/>-->
+        <bean class="java.lang.Thread" c:target-ref="kdRoomPool" p:name="Thread-kdRoomPool"/>
         <bean class="java.lang.Thread" c:target-ref="raisePool" p:name="Thread-raisePool"/>
-        <bean class="java.lang.Thread" c:target-ref="weiBoPool" p:name="Thread-weiBoPool"/>
+        <!--        <bean class="java.lang.Thread" c:target-ref="weiBoPool" p:name="Thread-weiBoPool"/>-->
     </unit:list>
 
     <bean id="raisePool" class="top.yzlin.monitoring.MonitoringMoreData"
@@ -32,23 +32,22 @@
         <ref bean="sxrModian"/>
     </unit:list>
 
-    <!--<bean id="kdRoomPool" class="top.yzlin.monitoring.MonitoringMoreData"-->
-    <!--c:data-ref="kdRoomList"-->
-    <!--p:frequency="${kdRoom.Frequency}"/>-->
+    <bean id="kdRoomPool" class="top.yzlin.monitoring.MonitoringMoreData"
+          c:data-ref="kdRoomList"
+          p:frequency="${kdRoom.Frequency}"/>
 
-    <!--<unit:list id="kdRoomList" value-type="top.yzlin.koudai48.KDRoomMonitoring">-->
-    <!--<ref bean="zjyKD"/>-->
-    <!--<ref bean="sxrKD"/>-->
-    <!--</unit:list>-->
-
-    <bean id="weiBoPool" class="top.yzlin.monitoring.MonitoringMoreData"
-          c:data-ref="weiBoList"
-          p:frequency="${weiBo.Frequency}"/>
-
-    <unit:list id="weiBoList" value-type="top.yzlin.weibo.WeiBoMonitoring">
-        <ref bean="xccWeiBo"/>
-        <ref bean="zjyWeiBo"/>
-        <ref bean="sxrWeiBo"/>
+    <unit:list id="kdRoomList" value-type="top.yzlin.koudai49.KDRoomMonitoring">
+        <ref bean="zjyKD"/>
     </unit:list>
+
+    <!--    <bean id="weiBoPool" class="top.yzlin.monitoring.MonitoringMoreData"-->
+    <!--          c:data-ref="weiBoList"-->
+    <!--          p:frequency="${weiBo.Frequency}"/>-->
+
+    <!--    <unit:list id="weiBoList" value-type="top.yzlin.weibo.WeiBoMonitoring">-->
+    <!--        <ref bean="xccWeiBo"/>-->
+    <!--        <ref bean="zjyWeiBo"/>-->
+    <!--        <ref bean="sxrWeiBo"/>-->
+    <!--    </unit:list>-->
 
 </beans>

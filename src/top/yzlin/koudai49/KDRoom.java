@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 public class KDRoom implements BaseData<KDRoomInfo> {
-    private String requestParm;
+    private JSONObject requestParm;
     private MemberInfo memberInfo;
     private KDValidation kdValidation;
     private Set<KDRoomType> msgTypeSet = EnumSet.allOf(KDRoomType.class);
@@ -46,14 +46,14 @@ public class KDRoom implements BaseData<KDRoomInfo> {
                 }
             }
         }
+        Tools.print(memberInfo.getNickName() + "的房间");
         conn = KD49API.getTokenApiHeader(kdValidation.getToken());
         requestParm = new JSONObject()
                 .fluentPut("needTop1Msg", false)
-                .fluentPut("nextTime", System.currentTimeMillis())
                 .fluentPut("roomId", memberInfo.getRoomId())
-                .fluentPut("ownerId", memberInfo.getId())
-                .toString();
+                .fluentPut("ownerId", memberInfo.getId());
     }
+
 
     public void setFunction(KDRoomType kdRoomType,boolean status){
         if(status){
@@ -111,7 +111,11 @@ public class KDRoom implements BaseData<KDRoomInfo> {
     }
 
     public KDRoomInfo[] makeData(Predicate<JSONObject> before, Predicate<KDRoomInfo> predicate) {
-        JSONObject result = JSONObject.parseObject(Tools.sendPost(KD49API.KD_ROOM, requestParm, conn));
+        JSONObject result = JSONObject.parseObject(
+                Tools.sendPost(
+                        KD49API.KD_ROOM,
+                        requestParm.fluentPut("nextTime", System.currentTimeMillis()).toString(),
+                        conn));
         if (result.getIntValue("status") > 400000) {
             Tools.print(result.getString("message"));
             conn = KD49API.getTokenApiHeader(kdValidation.getNewToken());
@@ -136,38 +140,32 @@ public class KDRoom implements BaseData<KDRoomInfo> {
                             return null;
                         }
                         temp.setMsgTime(data.getLong("msgTime"));
-                        temp.setSender(extInfo.getString("senderName"));
+                        temp.setSender(extInfo.getJSONObject("user").getString("nickName"));
                         switch (type) {
                             case TEXT:
                                 temp.setMsg(extInfo.getString("text"));
                                 break;
                             case REPLY:
-                                temp.setText(extInfo.getString("faipaiContent"));
-                                temp.setMsg(extInfo.getString("messageText"));
+                                temp.setText(extInfo.getString("replyText"));
+                                temp.setMsg(extInfo.getString("text"));
                                 break;
                             case LIVE_PUSH:
-                                temp.setMsg("https://h5.48.cn/2017appshare/memberLiveShare/index.html?id=" +
-                                        extInfo.getString("referenceObjectId"));
-                                temp.setText(extInfo.getString("referenceContent"));
+                                temp.setMsg("https://h5.48.cn/2019appshare/memberLiveShare/?id=" +
+                                        extInfo.getString("liveId"));
+                                temp.setText(extInfo.getString("liveTitle"));
                                 break;
+                            case VIDEO:
                             case AUDIO:
                             case IMAGE:
-                                try {
-                                    temp.setMsg(JSONObject.parseObject(
-                                            data.getString("bodys"))
-                                            .getString("url"));
-                                } catch (JSONException e) {
-                                    temp.setMsg(JSONObject.parseObject(
-                                            data.getString("bodys").substring(1))
-                                            .getString("url"));
-                                }
+                                temp.setMsg(JSONObject.parseObject(data.getString("bodys")).getString("url"));
                                 break;
                             case FLIP_CARD:
-                                temp.setMsg(extInfo.getString("idolFlipContent"));
-                                temp.setText(extInfo.getString("idolFlipTitle"));
+                                temp.setMsg(extInfo.getString("answer"));
+                                temp.setText(extInfo.getString("question"));
                                 break;
                             default:
                                 temp.setMsg("未知信息类型并且此处代码不可达");
+                                System.out.println(data);
                         }
                         return temp;
                     } catch (JSONException e) {

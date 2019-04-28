@@ -2,7 +2,7 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:c="http://www.springframework.org/schema/c"
        xmlns="http://www.springframework.org/schema/beans"
-       xmlns:uint="http://www.springframework.org/schema/util"
+       xmlns:uint="http://www.springframework.org/schema/util" xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
     <bean name="cqZJY" class="top.yzlin.cqrobotsdk.HttpAPI" c:port="${ZJY.port}"/>
@@ -28,23 +28,23 @@
           c:gid="${ZJY.groupID}"/>
 
     <!--微博-->
-    <bean id="zjyWeiBo" class="top.yzlin.weibo.WeiBoMonitoring"
-          c:cqRobot-ref="cqZJY"
-          c:groupID="${ZJY.groupID}">
-        <constructor-arg name="weiBo">
-            <bean class="top.yzlin.weibo.WeiBo"
-                  c:name="张嘉予"
-                  c:uid="5861113498"/>
-        </constructor-arg>
-    </bean>
+    <!--    <bean id="zjyWeiBo" class="top.yzlin.weibo.WeiBoMonitoring"-->
+    <!--          c:cqRobot-ref="cqZJY"-->
+    <!--          c:groupID="${ZJY.groupID}">-->
+    <!--        <constructor-arg name="weiBo">-->
+    <!--            <bean class="top.yzlin.weibo.WeiBo"-->
+    <!--                  c:name="张嘉予"-->
+    <!--                  c:uid="5861113498"/>-->
+    <!--        </constructor-arg>-->
+    <!--    </bean>-->
 
-    <!--口袋监控-->
-    <!--<bean id="zjyKD" class="top.yzlin.yyh.ZJYKDRoom"-->
-    <!--c:memberName="张嘉予"-->
-    <!--c:groupID="${ZJY.groupID}"-->
-    <!--c:cqRobot-ref="cqZJY"-->
-    <!--c:kdValidation-ref="kdValidation"-->
-    <!--p:CQPath="HttpApi"/>-->
+
+    <bean id="zjyKD" class="top.yzlin.koudai49.KDRoomMonitoring"
+          c:memberName="张嘉予"
+          c:groupID="${ZJY.groupID}"
+          c:cqRobot-ref="cqZJY"
+          c:kdValidation-ref="kdValidation"
+          p:CQPath="HttpApi"/>
 
     <!--关键字-->
     <bean class="top.yzlin.cqrobotsdk.keywordfunc.KeyWord"

@@ -10,6 +10,7 @@ Content-Type: application/json;charset=UTF-8
 User-Agent: PocketFans201807/6.0.0 (iPhone; iOS 12.2; Scale/2.00)
 appInfo: {"vendor": "apple", "deviceId": "DD6AA6A9-E3FE-445B-9C5B-DBB70917A123", "appVersion": "6.0.0", "appBuild": "190409", "osVersion": "12.2.0", "osType": "ios", "deviceName": "iphone", "os": "ios"}
 
+
 {
   "mobile": "13546860076",
   "pwd": "q1w2e3r4"
@@ -21,13 +22,13 @@ POST https://pocketapi.48.cn/im/api/v1/chatroom/msg/list/homeowner
 Content-Type: application/json;charset=UTF-8
 User-Agent: PocketFans201807/6.0.0 (iPhone; iOS 12.2; Scale/2.00)
 appInfo: {"vendor": "apple", "deviceId": "DD6AA6A9-E3FE-445B-9C5B-DBB70917A123", "appVersion": "6.0.0", "appBuild": "190409", "osVersion": "12.2.0", "osType": "ios", "deviceName": "iphone", "os": "ios"}
-token: 1PkjsgvPv12pbInKrn5BfvzcqRF/jceD0RBDiFG9zMV2xWaoKgZInvsTL7FrMmGcDCCPJMX+wxoPANkOKIdKvZHj50DQvTS35rncyZcgc0vo+yP9KIerUpJdLTiPHmWo
+token: kANufHZTWirJAZfkpayzCCSpwXn+btZc7Vn723fWEZ92xWaoKgZInvsTL7FrMmGcDCCPJMX+wxoPANkOKIdKvWVAM6Jdyo+SBFi2B8PfY+hwTUAFL3Y9W2Tx+ALL+gZe
 
 {
   "needTop1Msg": false,
-  "nextTime": 1556206994000,
-  "roomId": 67313734,
-  "ownerId": 286979
+  "nextTime": 1556461783227,
+  "roomId": 67313912,
+  "ownerId": 608997
 }
 
 ###
