@@ -117,11 +117,11 @@ public class KDRoom implements BaseData<KDRoomInfo> {
                         requestParm.fluentPut("nextTime", System.currentTimeMillis()).toString(),
                         conn));
         if (result.getIntValue("status") > 400000) {
-            Tools.print(result.getString("message"));
+            Tools.print("口袋验证4w：" + result.getString("message"));
             conn = KD49API.getTokenApiHeader(kdValidation.getNewToken());
             return makeData(before, predicate);
         } else if (result.getIntValue("status") != 200) {
-            Tools.print(result.getString("message"));
+            Tools.print("口袋验证200：" + result.getString("message"));
             return new KDRoomInfo[0];
         }
         return result.getJSONObject("content").getJSONArray("message").toJavaList(JSONObject.class)
@@ -169,7 +169,7 @@ public class KDRoom implements BaseData<KDRoomInfo> {
                         }
                         return temp;
                     } catch (JSONException e) {
-                        Tools.print(data);
+                        Tools.print("口袋解析问题：" + data);
                         return null;
                     }
                 }).filter(Objects::nonNull)

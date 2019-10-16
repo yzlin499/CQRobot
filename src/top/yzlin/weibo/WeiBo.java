@@ -5,6 +5,7 @@ import org.jsoup.Jsoup;
 import top.yzlin.monitoring.BaseData;
 import top.yzlin.tools.Tools;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -45,7 +46,7 @@ public class WeiBo implements BaseData<WeiBoInfo> {
 
     public static JSONObject getUIDAndVerifier(String name) {
         if (memberTemp == null) {
-            String data = Tools.sendGet("http://h5.snh48.com/resource/jsonp/members.php", "gid=00&callback=get_members_success");
+            String data = Tools.sendGet("http://h5.snh48.com/resource/jsonp/members.php", "gid=10&callback=get_members_success");
             JSONObject memberData = JSONObject.parseObject(data.substring(data.indexOf('(') + 1, data.lastIndexOf(')')));
             memberTemp = memberData.getJSONArray("rows").toJavaList(JSONObject.class);
         }
@@ -61,6 +62,7 @@ public class WeiBo implements BaseData<WeiBoInfo> {
     @Override
     public WeiBoInfo[] getData(Predicate<WeiBoInfo> predicate) {
         JSONObject jo = JSONObject.parseObject(Tools.sendGet("https://m.weibo.cn/api/container/getIndex", param));
+        System.out.println(jo);
         if (jo.getIntValue("ok") == 1) {
             return jo.getJSONObject("data").getJSONArray("cards").toJavaList(JSONObject.class).stream()
                     .filter(j -> j.getIntValue("card_type") == 9 && !j.getJSONObject("mblog").containsKey("title"))
@@ -87,9 +89,10 @@ public class WeiBo implements BaseData<WeiBoInfo> {
                         }
                         return weiBoInfo;
                     }).filter(predicate)
+                    .sorted(Comparator.comparingLong(WeiBoInfo::getId).reversed())
                     .toArray(WeiBoInfo[]::new);
         } else {
-            Tools.print(jo.getString("msg"));
+            Tools.print("微博问题" + jo.getString("msg"));
             return new WeiBoInfo[0];
         }
     }

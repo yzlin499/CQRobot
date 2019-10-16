@@ -1,12 +1,12 @@
 package top.yzlin.test;
 
-import com.alibaba.fastjson.JSON;
-import top.yzlin.koudai49.KDRoom;
-
 public class Test {
     public static void main(String[] args) {
-        KDRoom kdRoom = new KDRoom("13546860076", "");
-        System.out.println(JSON.toJSON(kdRoom.getData(1556463042299L)));
-
+//        CQRobot cqRobot=new HttpAPI(6700);
+//        Tools.sleep(3000);
+//        while(true){
+//            cqRobot.sendGroupMsg("730074397","梭哈");
+//            Tools.sleep(1000*60*51);
+//        }
     }
 }

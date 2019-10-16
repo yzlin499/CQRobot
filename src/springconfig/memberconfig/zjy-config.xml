@@ -7,13 +7,18 @@
 
     <bean name="cqZJY" class="top.yzlin.cqrobotsdk.HttpAPI" c:port="${ZJY.port}"/>
 
-    <!--集资-->
-    <bean id="zjyModian" class="top.yzlin.raise.ModianMonitoring"
-          c:cqRobot-ref="cqZJY"
-          c:groupID="${ZJY.groupID}"
-          c:proID="${ZJY.proID}"/>
+    <!--    <bean id="zjyModian2" class="top.yzlin.raise.ModianMonitoring"-->
+    <!--          c:cqRobot-ref="cqZJY"-->
+    <!--          c:groupID="${ZJY.groupID}"-->
+    <!--          c:proID="66179"/>-->
 
-    <bean class="top.yzlin.yyh.ZJYRaffle" c:am-ref="zjyModian"/>
+    <!--集资-->
+    <!--    <bean id="zjyModian" class="top.yzlin.raise.ModianMonitoring"-->
+    <!--          c:cqRobot-ref="cqZJY"-->
+    <!--          c:groupID="${ZJY.groupID}"-->
+    <!--          c:proID="${ZJY.proID}"/>-->
+
+    <!--    <bean class="top.yzlin.yyh.ZJYRaffle" c:am-ref="zjyModian"/>-->
 
 
     <!--抖音-->
@@ -28,15 +33,15 @@
           c:gid="${ZJY.groupID}"/>
 
     <!--微博-->
-    <!--    <bean id="zjyWeiBo" class="top.yzlin.weibo.WeiBoMonitoring"-->
-    <!--          c:cqRobot-ref="cqZJY"-->
-    <!--          c:groupID="${ZJY.groupID}">-->
-    <!--        <constructor-arg name="weiBo">-->
-    <!--            <bean class="top.yzlin.weibo.WeiBo"-->
-    <!--                  c:name="张嘉予"-->
-    <!--                  c:uid="5861113498"/>-->
-    <!--        </constructor-arg>-->
-    <!--    </bean>-->
+    <bean id="zjyWeiBo" class="top.yzlin.weibo.WeiBoMonitoring"
+          c:cqRobot-ref="cqZJY"
+          c:groupID="${ZJY.groupID}">
+        <constructor-arg name="weiBo">
+            <bean class="top.yzlin.weibo.WeiBo"
+                  c:name="张嘉予"
+                  c:uid="5861113498"/>
+        </constructor-arg>
+    </bean>
 
 
     <bean id="zjyKD" class="top.yzlin.koudai49.KDRoomMonitoring"
